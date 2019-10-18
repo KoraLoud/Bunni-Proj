@@ -10,8 +10,32 @@ namespace Bunni.Resources.Properties
     public class Life : Property
     {
 
-        //add checks to health to make sure it is not above max and not below health, then remove checks from methods.
-        public double Health { get; set; } = 100.0;
+        private double _health = 100.0;
+        public double Health
+        {
+            get
+            {
+                return _health;
+            }
+            set
+            {
+                if (value >= MaxHealth)
+                {
+                    _health = MaxHealth;
+                    IsAlive = true;
+                }
+                else if (value > MinHealth)
+                {
+                    _health = value;
+                    IsAlive = true;
+                }
+                else if (value <= MinHealth)
+                {
+                    _health = MinHealth;
+                    IsAlive = false;
+                }
+            }
+        }
         public double MinHealth { get; set; } = 0.0;
         public double MaxHealth { get; set; } = 100.0;
         public bool IsAlive { get; set; } = true;
@@ -26,6 +50,7 @@ namespace Bunni.Resources.Properties
         public Life(Entity _parent, double _maxHealth) : base(_parent, PropertyType.Life)
         {
             MaxHealth = _maxHealth;
+            Health = 100.0;
         }
 
         /// <summary>
@@ -38,6 +63,7 @@ namespace Bunni.Resources.Properties
         {
             MaxHealth = _maxHealth;
             MinHealth = _minHealth;
+            Health = 100.0;
         }
 
         /// <summary>
@@ -61,14 +87,7 @@ namespace Bunni.Resources.Properties
         /// <returns></returns>
         public double Damage(double _damage)
         {
-            if (Health - _damage <= MinHealth)
-            {
-                Health = MinHealth;
-                IsAlive = false;
-            }else
-            {
-                Health -= _damage;
-            }
+            Health -= _damage;
             return Health;
         }
         /// <summary>
@@ -78,18 +97,7 @@ namespace Bunni.Resources.Properties
         /// <returns></returns>
         public double Heal(double _heal)
         {
-            if (Health + _heal > MinHealth && Health + _heal < MaxHealth)
-            {
-                Health += _heal;
-                IsAlive = true;
-            }else if (Health + _heal >= MaxHealth)
-            {
-                Health = MaxHealth;
-                IsAlive = true;
-            }else
-            {
-                Health += _heal;
-            }
+            Health += _heal;
             return Health;
         }
 

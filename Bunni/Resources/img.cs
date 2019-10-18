@@ -28,6 +28,7 @@ namespace Bunni
                 {
                     speed = 1;
                     nLife.Damage(1);
+                    Console.WriteLine(nLife.Health);
                     if (!nLife.IsAlive)
                     {
                         (this.getComponent(ComponentType.Render) as Render).color = Color.Red;
