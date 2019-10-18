@@ -50,7 +50,7 @@ namespace Bunni.Resources.Properties
         public Life(Entity _parent, double _maxHealth) : base(_parent, PropertyType.Life)
         {
             MaxHealth = _maxHealth;
-            Health = 100.0;
+            Health = _maxHealth;
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Bunni.Resources.Properties
         {
             MaxHealth = _maxHealth;
             MinHealth = _minHealth;
-            Health = 100.0;
+            Health = _maxHealth;
         }
 
         /// <summary>
