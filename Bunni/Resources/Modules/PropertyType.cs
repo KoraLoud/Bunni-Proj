@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bunni
+namespace Bunni.Resources.Modules
 {
     public enum PropertyType
     {
-        PositionVector
+        PositionVector,
+        Life
     }
 }

@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bunni.Resources.Modules;
+using Bunni.Resources.Properties;
 
-namespace Bunni
+namespace Bunni.Resources.Components
+
 {
     public class Render : Component
     {

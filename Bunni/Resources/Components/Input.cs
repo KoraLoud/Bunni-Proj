@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bunni.Resources.Modules;
 
 
 //TODO:
 //Add gamepad input
 
-namespace Bunni
+namespace Bunni.Resources.Components
 {
     public class Input : Component
     {
@@ -139,6 +140,39 @@ namespace Bunni
 
         }
 
+        /// <summary>
+        /// Checks if a key is being held. Throws exception if keybind does not exist.
+        /// </summary>
+        /// <param name="keyToFind">Key to check the state of</param>
+        /// <returns></returns>
+        public bool KeyIsHeld(Keys keyToFind)
+        {
+            KeyListener keyFound = getKeyListenerObject(keyToFind);
+            if (keyFound != null)
+            {
+                return keyFound.Down;
+            }else
+            {
+                throw new ArgumentException("Key is not bound!");
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if key bind exists for key
+        /// </summary>
+        /// <param name="keyToFind">The key to check key bind for</param>
+        /// <returns>true or false</returns>
+        public bool KeyBindExists(Keys keyToFind)
+        {
+            KeyListener keyFound = getKeyListenerObject(keyToFind);
+            if(keyFound != null)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Connects a listener to the user's input device.

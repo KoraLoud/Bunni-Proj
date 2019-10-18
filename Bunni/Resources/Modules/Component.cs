@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bunni
+namespace Bunni.Resources.Modules
 {
     public class Component
     {

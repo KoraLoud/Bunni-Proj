@@ -1,0 +1,113 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Bunni.Resources.Modules;
+
+namespace Bunni.Resources.Properties
+{
+    public class Life : Property
+    {
+
+        //add checks to health to make sure it is not above max and not below health, then remove checks from methods.
+        public double Health { get; set; } = 100.0;
+        public double MinHealth { get; set; } = 0.0;
+        public double MaxHealth { get; set; } = 100.0;
+        public bool IsAlive { get; set; } = true;
+
+        public Life(Entity _parent) : base(_parent, PropertyType.Life) { }
+
+        /// <summary>
+        /// Creates life property and changes starting MaxHealth
+        /// </summary>
+        /// <param name="_parent"></param>
+        /// <param name="_maxHealth"></param>
+        public Life(Entity _parent, double _maxHealth) : base(_parent, PropertyType.Life)
+        {
+            MaxHealth = _maxHealth;
+        }
+
+        /// <summary>
+        /// Creates life property and changes starting MaxHealth and MinHealth
+        /// </summary>
+        /// <param name="_parent"></param>
+        /// <param name="_maxHealth"></param>
+        /// <param name="_minHealth"></param>
+        public Life(Entity _parent, double _maxHealth, double _minHealth) : base(_parent, PropertyType.Life)
+        {
+            MaxHealth = _maxHealth;
+            MinHealth = _minHealth;
+        }
+
+        /// <summary>
+        /// Creates life property and changes starting Maxhealth, Minhealth, and Health
+        /// </summary>
+        /// <param name="_parent"></param>
+        /// <param name="_maxHealth"></param>
+        /// <param name="_minHealth"></param>
+        /// <param name="_health"></param>
+        public Life(Entity _parent, double _maxHealth, double _minHealth, double _health) : base(_parent, PropertyType.Life)
+        {
+            MaxHealth = _maxHealth;
+            MinHealth = _minHealth;
+            Health = _health;
+        }
+
+        /// <summary>
+        /// Damanges the Entity. Health cannot go below
+        /// </summary>
+        /// <param name="_damage"></param>
+        /// <returns></returns>
+        public double Damage(double _damage)
+        {
+            if (Health - _damage <= MinHealth)
+            {
+                Health = MinHealth;
+                IsAlive = false;
+            }else
+            {
+                Health -= _damage;
+            }
+            return Health;
+        }
+        /// <summary>
+        /// Heals the Entity. Health cannot go above max health.
+        /// </summary>
+        /// <param name="_heal"></param>
+        /// <returns></returns>
+        public double Heal(double _heal)
+        {
+            if (Health + _heal > MinHealth && Health + _heal < MaxHealth)
+            {
+                Health += _heal;
+                IsAlive = true;
+            }else if (Health + _heal >= MaxHealth)
+            {
+                Health = MaxHealth;
+                IsAlive = true;
+            }else
+            {
+                Health += _heal;
+            }
+            return Health;
+        }
+
+        /// <summary>
+        /// Checks to see if entity has max health.
+        /// </summary>
+        /// <returns></returns>
+        public bool HasMaxHealth()
+        {
+            if(Health == MaxHealth)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+        }
+
+
+    }
+}

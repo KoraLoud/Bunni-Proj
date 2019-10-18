@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bunni.Resources.Modules;
 
-namespace Bunni
+namespace Bunni.Resources.Properties
 {
     public class PositionVector : Property
     {
