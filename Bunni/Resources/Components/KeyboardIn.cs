@@ -13,7 +13,7 @@ using Bunni.Resources.Modules;
 
 namespace Bunni.Resources.Components
 {
-    public class Input : Component
+    public class KeyboardIn : Component
     {
         public Vector2 InputVector { get; set; }
 
@@ -30,7 +30,7 @@ namespace Bunni.Resources.Components
         /// Sets keyboard keys to WASD and sets up listeners for all of them. Returns self.
         /// </summary>
         /// <returns>Itself</returns>
-        public Input SetDefaultKeyboardKeys()
+        public KeyboardIn SetDefaultKeyboardKeys()
         {
             UpK = Keys.W;
             RightK = Keys.D;
@@ -95,7 +95,7 @@ namespace Bunni.Resources.Components
         }
 
 
-        public Input(Entity _parent) : base(_parent)
+        public KeyboardIn(Entity _parent) : base(_parent)
         {
 
         }

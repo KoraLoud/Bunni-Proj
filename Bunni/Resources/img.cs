@@ -21,7 +21,7 @@ namespace Bunni
             this.AttachComponent(new Render(this, tex));
             Life nLife = new Life(this);
             this.AddProperty(nLife);
-            Input nInput = new Input(this);
+            KeyboardIn nInput = new KeyboardIn(this);
             nInput.SetDefaultKeyboardKeys().BindKey(Keys.LeftShift, (pressed, held) => 
             {
                 if(pressed || held)
@@ -72,7 +72,7 @@ namespace Bunni
         public override void Update(GameTime gameTime)
         {
 
-            Input entIn = GetComponent<Input>();
+            Resources.Components.KeyboardIn entIn = GetComponent<Resources.Components.KeyboardIn>();
             PositionVector entPos = GetProperty<PositionVector>();
             Vector2 pos = entPos.Position;
             pos.X += entIn.InputVector.X*speed;

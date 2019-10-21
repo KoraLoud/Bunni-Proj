@@ -9,6 +9,7 @@ namespace Bunni.Resources.Modules
     public class Property
     {
         public Entity Parent { get; set; }
+        
 
         public Property(Entity _parent)
         {
