@@ -10,9 +10,12 @@ using System;
     //Input (done)
     //Collision
     //Animator
+    //physics
+    //Scene
+    //camera
 //Properties
     //Rectangle
-    //Life
+    //Life (done)
         //Health,
         //isDead,
         //Heal,
