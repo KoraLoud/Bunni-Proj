@@ -26,16 +26,18 @@ namespace Bunni.Resources.Components
         public Keys DownK { get; set; }
         public Keys LeftK { get; set; }
 
-        /// <summary>
-        /// Sets keyboard keys to WASD and sets up listeners for all of them. Returns self.
-        /// </summary>
-        /// <returns>Itself</returns>
         public KeyboardIn SetDefaultKeyboardKeys()
         {
-            UpK = Keys.W;
-            RightK = Keys.D;
-            DownK = Keys.S;
-            LeftK = Keys.A;
+            return _SetDefaultKeyboardKeys(Keys.W, Keys.D, Keys.S, Keys.A);
+        }
+
+        public KeyboardIn SetDefaultKeyboardKeys(Keys UpK, Keys RightK, Keys DownK, Keys LeftK)
+        {
+            return _SetDefaultKeyboardKeys(UpK, RightK, DownK, LeftK);
+        }
+
+        private KeyboardIn _SetDefaultKeyboardKeys(Keys UpK, Keys RightK, Keys DownK, Keys LeftK)
+        {
             BindKey(UpK, (pressed, held) =>
             {
                 Vector2 input = InputVector;
