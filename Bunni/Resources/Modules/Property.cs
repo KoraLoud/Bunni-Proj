@@ -13,5 +13,10 @@ namespace Bunni.Resources.Modules
         {
 
         }
+
+        public virtual void PropertyAdded()
+        {
+
+        }
     }
 }

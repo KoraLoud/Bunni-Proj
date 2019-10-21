@@ -62,9 +62,9 @@ namespace Bunni
             scene1 = new Scene();
             PositionVector nPsV = new PositionVector(hitBox);
             Render nRen = new Render(hitBox, tex);
-            nPsV.Position = new Vector2(400, 300);
-            hitBox.AddProperty(nPsV);
+            nPsV.Position = new Vector2(400, 200);
             Hitbox nHitbox = new Hitbox(hitBox);
+            hitBox.AddProperty(nPsV);
             hitBox.AddComponent(nRen);
             hitBox.AddComponent(nHitbox);
 
@@ -104,11 +104,20 @@ namespace Bunni
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-            Console.WriteLine(player.GetComponent<Hitbox>().Box.Intersects(hitBox.GetComponent<Hitbox>().Box));
+            scene1.PreUpdate(gameTime);
+
+            if (player.GetComponent<Hitbox>().Box.Intersects(hitBox.GetComponent<Hitbox>().Box))
+            {
+                player.GetComponent<Render>().Color = Color.Red;
+            }else
+            {
+                player.GetComponent<Render>().Color = Color.White;
+            }
 
 
             scene1.Update(gameTime);
+            scene1.PostUpdate(gameTime);
+
             base.Update(gameTime);
         }
 

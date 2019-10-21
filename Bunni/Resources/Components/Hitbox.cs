@@ -27,8 +27,13 @@ namespace Bunni.Resources.Components
 
         public Hitbox(Entity _parent) : base(_parent)
         {
+
+        }
+
+        public override void ComponentAdded()
+        {
             PositionVector pos = Parent.GetProperty<PositionVector>();
-            if(pos == null)
+            if (pos == null)
             {
                 pos = new PositionVector(Parent);
                 Parent.AddProperty(pos);
@@ -42,8 +47,16 @@ namespace Bunni.Resources.Components
                 Width = rend.Texture.Width;
                 Height = rend.Texture.Height;
             }
+        }
 
-
+        public override void PreUpdate(GameTime gameTime)
+        {
+            Render rend = Parent.GetComponent<Render>();
+            if (rend != null)
+            {
+                Width = rend.Texture.Width;
+                Height = rend.Texture.Height;
+            }
         }
     }
 }

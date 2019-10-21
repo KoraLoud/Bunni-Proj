@@ -24,6 +24,7 @@ namespace Bunni.Resources.Modules
         public void AddComponent(Component component)
         {
             Components.Add(component);
+            component.ComponentAdded();
         }
 
         /// <summary>
@@ -60,6 +61,7 @@ namespace Bunni.Resources.Modules
         public void AddProperty(Property p)
         {
             Properties.Add(p);
+            p.PropertyAdded();
         }
 
         /// <summary>
@@ -89,11 +91,27 @@ namespace Bunni.Resources.Modules
             
         }
 
+        public virtual void PreUpdate(GameTime gameTime)
+        {
+            foreach (Component component in Components)
+            {
+                component.PreUpdate(gameTime);
+            }
+        }
+
         public virtual void Update(GameTime gameTime)
         {
             foreach (Component component in Components)
             {
                 component.Update(gameTime);
+            }
+        }
+
+        public virtual void PostUpdate(GameTime gameTime)
+        {
+            foreach (Component component in Components)
+            {
+                component.PostUpdate(gameTime);
             }
         }
 

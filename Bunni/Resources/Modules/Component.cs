@@ -17,7 +17,22 @@ namespace Bunni.Resources.Modules
 
         }
 
+        public virtual void ComponentAdded()
+        {
+
+        }
+
+        public virtual void PreUpdate(GameTime gameTime)
+        {
+
+        }
+
         public virtual void Update(GameTime gameTime)
+        {
+
+        }
+
+        public virtual void PostUpdate(GameTime gameTime)
         {
 
         }
