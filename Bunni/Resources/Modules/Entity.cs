@@ -12,8 +12,10 @@ namespace Bunni.Resources.Modules
     {
         private List<Component> Components = new List<Component>();
         private List<Property> Properties = new List<Property>();
+
         public bool OnScreen { get; set; }
         public bool Active { get; set; } = true;
+        public bool Visible { get; set; } = true;
         
         /// <summary>
         /// Used to add a component to an entity

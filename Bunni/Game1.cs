@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Bunni.Resources.Modules;
+using Bunni.Resources.Properties;
+using Bunni.Resources.Components;
 using System;
 
 
@@ -14,7 +17,8 @@ using System;
     //Scene
     //camera
 //Properties
-    //Rectangle
+    //Hitbox (done)
+    //More collider types
     //Life (done)
         //Health,
         //isDead,
@@ -31,7 +35,8 @@ namespace Bunni
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public img img1;
+        public player1 player;
+        public Scene scene1;
 
 
         public Game1()
@@ -50,8 +55,9 @@ namespace Bunni
         {
             // TODO: Add your initialization logic here
             Texture2D tex = Content.Load<Texture2D>("img");
-            img1 = new img(tex);
-
+            player = new player1(tex);
+            scene1 = new Scene();
+            scene1.AddEntity(player);
             base.Initialize();
         }
 
@@ -87,8 +93,8 @@ namespace Bunni
                 Exit();
 
             // TODO: Add your update logic here
-            
-            img1.Update(gameTime);
+
+            scene1.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -102,7 +108,7 @@ namespace Bunni
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            img1.Draw(gameTime, spriteBatch);
+            scene1.Draw(gameTime, spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

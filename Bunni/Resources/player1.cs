@@ -12,10 +12,10 @@ using Bunni.Resources.Components;
 
 namespace Bunni
 {
-    public class img : Entity
+    public class player1 : Entity //this is just ac lass for testing framework functionality
     {
         public int speed = 5;
-        public img(Texture2D tex)
+        public player1(Texture2D tex)
         {
             this.AddProperty(new PositionVector(this));
             this.AddComponent(new Render(this, tex));
