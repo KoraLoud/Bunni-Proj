@@ -10,4 +10,4 @@ For example, the render component needs position information to render something
 
 # Currently Implemented
 
-Right now there are Entity, Component, and Property classes which are the most basic. The ones that are implemented for actual usage is Render, Input, and PositionVector.
+Right now there are Entity, Component, and Property classes which are the most basic. The ones that are implemented for actual usage is Render, Input, PositionVector,and Life.
