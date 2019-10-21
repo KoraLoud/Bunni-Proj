@@ -8,13 +8,11 @@ namespace Bunni.Resources.Modules
 {
     public class Property
     {
-        public Entity parent { get; set; }
-        public PropertyType propertyType { get; set; }
+        public Entity Parent { get; set; }
 
-        public Property(Entity _parent, PropertyType pt)
+        public Property(Entity _parent)
         {
-            parent = _parent;
-            propertyType = pt;
+            Parent = _parent;
         }
     }
 }

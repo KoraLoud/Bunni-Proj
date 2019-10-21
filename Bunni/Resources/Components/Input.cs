@@ -95,7 +95,7 @@ namespace Bunni.Resources.Components
         }
 
 
-        public Input(Entity _parent) : base(_parent, ComponentType.Input)
+        public Input(Entity _parent) : base(_parent)
         {
 
         }

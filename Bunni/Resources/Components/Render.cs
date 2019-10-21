@@ -16,7 +16,7 @@ namespace Bunni.Resources.Components
         public Texture2D Texture { get; set; }
         public Color Color { get; set; }
 
-        public Render(Entity _parent, Texture2D _texture) : base(_parent, ComponentType.Render)
+        public Render(Entity _parent, Texture2D _texture) : base(_parent)
         {
             Texture = _texture;
             Color = Color.White;
@@ -24,7 +24,7 @@ namespace Bunni.Resources.Components
 
         public PositionVector getPosition()
         {
-            return parent.GetProperty(PropertyType.PositionVector) as PositionVector;
+            return Parent.GetProperty<PositionVector>();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

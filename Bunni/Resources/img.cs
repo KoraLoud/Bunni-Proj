@@ -31,16 +31,16 @@ namespace Bunni
                     //Console.WriteLine(nLife.Health);
                     if (!nLife.IsAlive)
                     {
-                        (GetComponent(ComponentType.Render) as Render).Color = Color.Red;
+                        GetComponent<Render>().Color = Color.Red;
                     }else
                     {
-                        (GetComponent(ComponentType.Render) as Render).Color = Color.Orange;
+                        GetComponent<Render>().Color = Color.Orange;
                     }
                 }else
                 {
                     if (nLife.IsAlive)
                     {
-                        (GetComponent(ComponentType.Render) as Render).Color = Color.White;
+                        GetComponent<Render>().Color = Color.White;
                     }
                     speed = 5;
                 }
@@ -52,17 +52,17 @@ namespace Bunni
                     nLife.Heal(1);
                     if(!nLife.HasMaxHealth())
                     {
-                        (GetComponent(ComponentType.Render) as Render).Color = Color.Green;
+                        GetComponent<Render>().Color = Color.Green;
                     }else
                     {
-                        (GetComponent(ComponentType.Render) as Render).Color = Color.Turquoise;
+                        GetComponent<Render>().Color = Color.Turquoise;
                     }
                     
                 }else
                 {
                     if (nLife.IsAlive && !nInput.KeyIsHeld(Keys.LeftShift))
                     {
-                        (GetComponent(ComponentType.Render) as Render).Color = Color.White;
+                        GetComponent<Render>().Color = Color.White;
                     }
                 }
             });
@@ -71,9 +71,9 @@ namespace Bunni
 
         public override void Update(GameTime gameTime)
         {
-            
-            Input entIn = GetComponent(ComponentType.Input) as Input;
-            PositionVector entPos = GetProperty(PropertyType.PositionVector) as PositionVector;
+
+            Input entIn = GetComponent<Input>();
+            PositionVector entPos = GetProperty<PositionVector>();
             Vector2 pos = entPos.Position;
             pos.X += entIn.InputVector.X*speed;
             pos.Y += entIn.InputVector.Y*speed;

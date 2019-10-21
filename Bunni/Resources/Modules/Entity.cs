@@ -28,9 +28,10 @@ namespace Bunni.Resources.Modules
         /// Used to detach a component from the entity. This will delete the component.
         /// </summary>
         /// <param name="componentType">The type of component to detatch</param>
-        public void DetatchComponent(ComponentType componentType)
+        public void DetatchComponent(Component component)
         {
-            Components.Remove(Components.Find(c => c.componentType.Equals(componentType)));
+            //Components.Remove(Components.Find(c => c.componentType.Equals(componentType)));
+            Components.Remove(component);
         }
 
         /// <summary>
@@ -38,17 +39,16 @@ namespace Bunni.Resources.Modules
         /// </summary>
         /// <param name="componentType">The type of component to retrieve</param>
         /// <returns>The component that was requested. Make sure to cast to desired class</returns>
-        public Component GetComponent(ComponentType componentType)
+        public T GetComponent<T>() where T :  Component
         {
-            Component foundComponent = Components.Find(c => c.componentType.Equals(componentType));
-            if (foundComponent != null)
+            foreach(var c in Components)
             {
-                return foundComponent;
+                if(c is T)
+                {
+                    return c as T;
+                }
             }
-            else
-            {
-                throw new ArgumentException("This component is not attached to the Entity.");
-            }
+            return null;
         }
 
         public void AddProperty(Property p)
@@ -56,21 +56,21 @@ namespace Bunni.Resources.Modules
             Properties.Add(p);
         }
 
-        public void RemoveProperty(PropertyType pt)
+        public void RemoveProperty(Property p)
         {
-            Properties.Remove(Properties.Find(p => p.propertyType.Equals(pt)));
+            Properties.Remove(p);
         }
 
-        public Property GetProperty(PropertyType pt)
+        public T GetProperty<T>() where T : Property
         {
-            Property foundProperty = Properties.Find(p => p.propertyType.Equals(pt));
-            if(foundProperty != null)
+            foreach(var p in Properties)
             {
-                return foundProperty;
-            }else
-            {
-                throw new ArgumentException("The property was not found in the entity");
+                if(p is T)
+                {
+                    return p as T;
+                }
             }
+            return null;
             
         }
 

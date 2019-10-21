@@ -11,13 +11,11 @@ namespace Bunni.Resources.Modules
     public class Component
     {
         public virtual string Name { get; }
-        public Entity parent { get; set; }
-        public ComponentType componentType { get; set; }
+        public Entity Parent { get; set; }
 
-        public Component(Entity _parent, ComponentType ct)
+        public Component(Entity _parent)
         {
-            parent = _parent;
-            componentType = ct;
+            Parent = _parent;
         }
 
         public virtual void Update(GameTime gameTime)
