@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace Bunni.Resources.Modules
 {
-    public class Property
+    public class Property : Module
     {
-        public Entity Parent { get; set; }
-        
 
-        public Property(Entity _parent)
+        public Property(Entity _parent) : base(_parent)
         {
-            Parent = _parent;
+
         }
     }
 }

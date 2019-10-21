@@ -47,6 +47,7 @@ namespace Bunni.Resources.Components
                 Height = rend.Texture.Height;
             }
 
+
         }
     }
 }

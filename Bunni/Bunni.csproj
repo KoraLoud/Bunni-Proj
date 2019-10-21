@@ -49,7 +49,9 @@
     <Compile Include="Resources\img.cs" />
     <Compile Include="Resources\Modules\Component.cs" />
     <Compile Include="Resources\Modules\Entity.cs" />
+    <Compile Include="Resources\Modules\Module.cs" />
     <Compile Include="Resources\Modules\Property.cs" />
+    <Compile Include="Resources\Components\Hitbox.cs" />
     <Compile Include="Resources\Properties\Life.cs" />
     <Compile Include="Resources\Properties\PositionVector.cs" />
   </ItemGroup>
