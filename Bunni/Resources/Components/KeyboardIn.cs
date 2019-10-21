@@ -19,24 +19,29 @@ namespace Bunni.Resources.Components
 
         private List<KeyListener> Listeners = new List<KeyListener>();
 
-        //basic keyboard input vars. Can be rebound at any time
-        //K at the end of var means Keyboard
-        public Keys UpK { get; set; }
-        public Keys RightK { get; set; }
-        public Keys DownK { get; set; }
-        public Keys LeftK { get; set; }
-
+        /// <summary>
+        /// Sets default movement keys to WASD
+        /// </summary>
+        /// <returns>keyboard input component</returns>
         public KeyboardIn SetDefaultKeyboardKeys()
         {
-            return _SetDefaultKeyboardKeys(Keys.W, Keys.D, Keys.S, Keys.A);
+            return _SetDefaultKeyboardKeys(Keys.W, Keys.A, Keys.S, Keys.D);
         }
 
-        public KeyboardIn SetDefaultKeyboardKeys(Keys UpK, Keys RightK, Keys DownK, Keys LeftK)
+        /// <summary>
+        /// Sets default movement keys to custom keys.
+        /// </summary>
+        /// <param name="UpK">Key to set input vector Y position to -1</param>
+        /// <param name="LeftK">Key to set input vector X position to -1</param>
+        /// <param name="DownK">Key to set input vector Y position to 1</param>
+        /// <param name="RightK">Key to set input vector X position to 1</param>
+        /// <returns></returns>
+        public KeyboardIn SetDefaultKeyboardKeys(Keys UpK, Keys LeftK, Keys DownK, Keys RightK)
         {
-            return _SetDefaultKeyboardKeys(UpK, RightK, DownK, LeftK);
+            return _SetDefaultKeyboardKeys(UpK, LeftK, DownK, RightK);
         }
 
-        private KeyboardIn _SetDefaultKeyboardKeys(Keys UpK, Keys RightK, Keys DownK, Keys LeftK)
+        private KeyboardIn _SetDefaultKeyboardKeys(Keys UpK, Keys LeftK, Keys DownK, Keys RightK)
         {
             BindKey(UpK, (pressed, held) =>
             {
@@ -92,7 +97,6 @@ namespace Bunni.Resources.Components
                 }
                 InputVector = input;
             });
-
             return this;
         }
 
