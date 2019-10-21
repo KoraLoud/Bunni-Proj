@@ -15,19 +15,15 @@ namespace Bunni.Resources.Components
         public int Height { get; set; }
 
         private PositionVector _position;
-        private Rectangle _hitBox;
 
         public Rectangle Box
         {
             get
             {
-                return _hitBox;
-            }
-            set
-            {
-                _hitBox = new Rectangle((int)_position.X, (int)_position.Y, Width, Height);
+                return new Rectangle((int)_position.X, (int)_position.Y, Width, Height);
             }
         }
+
 
         public Hitbox(Entity _parent) : base(_parent)
         {
