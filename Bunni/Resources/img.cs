@@ -17,10 +17,10 @@ namespace Bunni
         public int speed = 5;
         public img(Texture2D tex)
         {
-            this.addProperty(new PositionVector(this));
-            this.attachComponent(new Render(this, tex));
+            this.AddProperty(new PositionVector(this));
+            this.AttachComponent(new Render(this, tex));
             Life nLife = new Life(this);
-            this.addProperty(nLife);
+            this.AddProperty(nLife);
             Input nInput = new Input(this);
             nInput.SetDefaultKeyboardKeys().BindKey(Keys.LeftShift, (pressed, held) => 
             {
@@ -28,19 +28,19 @@ namespace Bunni
                 {
                     speed = 1;
                     nLife.Damage(1);
-                    Console.WriteLine(nLife.Health);
+                    //Console.WriteLine(nLife.Health);
                     if (!nLife.IsAlive)
                     {
-                        (this.getComponent(ComponentType.Render) as Render).color = Color.Red;
+                        (GetComponent(ComponentType.Render) as Render).color = Color.Red;
                     }else
                     {
-                        (this.getComponent(ComponentType.Render) as Render).color = Color.Orange;
+                        (GetComponent(ComponentType.Render) as Render).color = Color.Orange;
                     }
                 }else
                 {
                     if (nLife.IsAlive)
                     {
-                        (this.getComponent(ComponentType.Render) as Render).color = Color.White;
+                        (GetComponent(ComponentType.Render) as Render).color = Color.White;
                     }
                     speed = 5;
                 }
@@ -52,28 +52,28 @@ namespace Bunni
                     nLife.Heal(1);
                     if(!nLife.HasMaxHealth())
                     {
-                        (this.getComponent(ComponentType.Render) as Render).color = Color.Green;
+                        (GetComponent(ComponentType.Render) as Render).color = Color.Green;
                     }else
                     {
-                        (this.getComponent(ComponentType.Render) as Render).color = Color.Turquoise;
+                        (GetComponent(ComponentType.Render) as Render).color = Color.Turquoise;
                     }
                     
                 }else
                 {
                     if (nLife.IsAlive && !nInput.KeyIsHeld(Keys.LeftShift))
                     {
-                        (this.getComponent(ComponentType.Render) as Render).color = Color.White;
+                        (GetComponent(ComponentType.Render) as Render).color = Color.White;
                     }
                 }
             });
-            attachComponent(nInput);
+            AttachComponent(nInput);
         }
 
         public override void Update(GameTime gameTime)
         {
             
-            Input entIn = getComponent(ComponentType.Input) as Input;
-            PositionVector entPos = getProperty(PropertyType.PositionVector) as PositionVector;
+            Input entIn = GetComponent(ComponentType.Input) as Input;
+            PositionVector entPos = GetProperty(PropertyType.PositionVector) as PositionVector;
             Vector2 pos = entPos.Position;
             pos.X += entIn.InputVector.X*speed;
             pos.Y += entIn.InputVector.Y*speed;

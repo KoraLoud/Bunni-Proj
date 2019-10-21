@@ -12,12 +12,14 @@ namespace Bunni.Resources.Modules
     {
         private List<Component> Components = new List<Component>();
         private List<Property> Properties = new List<Property>();
+        public bool OnScreen { get; set; }
+        public bool Active { get; set; } = true;
         
         /// <summary>
         /// Used to attach a component to an entity
         /// </summary>
         /// <param name="component">The component to attach</param>
-        public void attachComponent(Component component)
+        public void AttachComponent(Component component)
         {
             Components.Add(component);
         }
@@ -26,7 +28,7 @@ namespace Bunni.Resources.Modules
         /// Used to detach a component from the entity. This will delete the component.
         /// </summary>
         /// <param name="componentType">The type of component to detatch</param>
-        public void detatchComponent(ComponentType componentType)
+        public void DetatchComponent(ComponentType componentType)
         {
             Components.Remove(Components.Find(c => c.componentType.Equals(componentType)));
         }
@@ -36,7 +38,7 @@ namespace Bunni.Resources.Modules
         /// </summary>
         /// <param name="componentType">The type of component to retrieve</param>
         /// <returns>The component that was requested. Make sure to cast to desired class</returns>
-        public Component getComponent(ComponentType componentType)
+        public Component GetComponent(ComponentType componentType)
         {
             Component foundComponent = Components.Find(c => c.componentType.Equals(componentType));
             if (foundComponent != null)
@@ -49,17 +51,17 @@ namespace Bunni.Resources.Modules
             }
         }
 
-        public void addProperty(Property p)
+        public void AddProperty(Property p)
         {
             Properties.Add(p);
         }
 
-        public void removeProperty(PropertyType pt)
+        public void RemoveProperty(PropertyType pt)
         {
             Properties.Remove(Properties.Find(p => p.propertyType.Equals(pt)));
         }
 
-        public Property getProperty(PropertyType pt)
+        public Property GetProperty(PropertyType pt)
         {
             Property foundProperty = Properties.Find(p => p.propertyType.Equals(pt));
             if(foundProperty != null)

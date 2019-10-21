@@ -13,23 +13,23 @@ namespace Bunni.Resources.Components
 {
     public class Render : Component
     {
-        public Texture2D texture { get; set; }
-        public Color color { get; set; }
+        public Texture2D Texture { get; set; }
+        public Color Color { get; set; }
 
         public Render(Entity _parent, Texture2D _texture) : base(_parent, ComponentType.Render)
         {
-            texture = _texture;
-            color = Color.White;
+            Texture = _texture;
+            Color = Color.White;
         }
 
         public PositionVector getPosition()
         {
-            return parent.getProperty(PropertyType.PositionVector) as PositionVector;
+            return parent.GetProperty(PropertyType.PositionVector) as PositionVector;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, getPosition().Position, color);
+            spriteBatch.Draw(Texture, getPosition().Position, Color);
         }
 
     }
