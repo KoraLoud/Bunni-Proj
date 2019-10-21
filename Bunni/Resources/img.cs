@@ -31,16 +31,16 @@ namespace Bunni
                     //Console.WriteLine(nLife.Health);
                     if (!nLife.IsAlive)
                     {
-                        (GetComponent(ComponentType.Render) as Render).color = Color.Red;
+                        (GetComponent(ComponentType.Render) as Render).Color = Color.Red;
                     }else
                     {
-                        (GetComponent(ComponentType.Render) as Render).color = Color.Orange;
+                        (GetComponent(ComponentType.Render) as Render).Color = Color.Orange;
                     }
                 }else
                 {
                     if (nLife.IsAlive)
                     {
-                        (GetComponent(ComponentType.Render) as Render).color = Color.White;
+                        (GetComponent(ComponentType.Render) as Render).Color = Color.White;
                     }
                     speed = 5;
                 }
@@ -52,17 +52,17 @@ namespace Bunni
                     nLife.Heal(1);
                     if(!nLife.HasMaxHealth())
                     {
-                        (GetComponent(ComponentType.Render) as Render).color = Color.Green;
+                        (GetComponent(ComponentType.Render) as Render).Color = Color.Green;
                     }else
                     {
-                        (GetComponent(ComponentType.Render) as Render).color = Color.Turquoise;
+                        (GetComponent(ComponentType.Render) as Render).Color = Color.Turquoise;
                     }
                     
                 }else
                 {
                     if (nLife.IsAlive && !nInput.KeyIsHeld(Keys.LeftShift))
                     {
-                        (GetComponent(ComponentType.Render) as Render).color = Color.White;
+                        (GetComponent(ComponentType.Render) as Render).Color = Color.White;
                     }
                 }
             });
