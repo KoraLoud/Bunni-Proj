@@ -12,13 +12,15 @@ using System;
 //Components
     //Input (done)
     //Collision
+        //hitboxes
+        //layers
+        //tags
+        //more types
     //Animator
     //physics
     //Scene
     //camera
 //Properties
-    //Hitbox (done)
-    //More collider types
     //Life (done)
         //Health,
         //isDead,
@@ -37,6 +39,7 @@ namespace Bunni
         SpriteBatch spriteBatch;
         public player1 player;
         public Scene scene1;
+        public Entity hitBox = new Entity();
 
 
         public Game1()
@@ -57,6 +60,15 @@ namespace Bunni
             Texture2D tex = Content.Load<Texture2D>("img");
             player = new player1(tex);
             scene1 = new Scene();
+            PositionVector nPsV = new PositionVector(hitBox);
+            Render nRen = new Render(hitBox, tex);
+            nPsV.Position = new Vector2(400, 300);
+            hitBox.AddProperty(nPsV);
+            Hitbox nHitbox = new Hitbox(hitBox);
+            hitBox.AddComponent(nRen);
+            hitBox.AddComponent(nHitbox);
+
+            scene1.AddEntity(hitBox);
             scene1.AddEntity(player);
             base.Initialize();
         }
@@ -93,6 +105,8 @@ namespace Bunni
                 Exit();
 
             // TODO: Add your update logic here
+            Console.WriteLine(player.GetComponent<Hitbox>().Box.Intersects(hitBox.GetComponent<Hitbox>().Box));
+
 
             scene1.Update(gameTime);
             base.Update(gameTime);

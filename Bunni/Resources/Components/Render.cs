@@ -26,6 +26,10 @@ namespace Bunni.Resources.Components
             _position = pos;
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            _position = Parent.GetProperty<PositionVector>();
+        }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
