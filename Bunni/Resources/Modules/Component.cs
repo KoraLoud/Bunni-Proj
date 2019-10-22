@@ -22,17 +22,17 @@ namespace Bunni.Resources.Modules
 
         }
 
-        public virtual void PreUpdate(GameTime gameTime)
+        public virtual void PreUpdate(GameTime gameTime, Scene scene)
         {
 
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, Scene scene)
         {
 
         }
 
-        public virtual void PostUpdate(GameTime gameTime)
+        public virtual void PostUpdate(GameTime gameTime, Scene scene)
         {
 
         }

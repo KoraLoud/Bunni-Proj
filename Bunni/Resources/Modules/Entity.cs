@@ -33,7 +33,6 @@ namespace Bunni.Resources.Modules
         /// <param name="component">The component to remove</param>
         public void RemoveComponent(Component component)
         {
-            //Components.Remove(Components.Find(c => c.componentType.Equals(componentType)));
             Components.Remove(component);
         }
 
@@ -91,27 +90,39 @@ namespace Bunni.Resources.Modules
             
         }
 
-        public virtual void PreUpdate(GameTime gameTime)
+        /// <summary>
+        /// Fired before Update
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public virtual void PreUpdate(GameTime gameTime, Scene scene)
         {
             foreach (Component component in Components)
             {
-                component.PreUpdate(gameTime);
+                component.PreUpdate(gameTime, scene);
             }
         }
 
-        public virtual void Update(GameTime gameTime)
+        /// <summary>
+        /// Fire after PreUpdate but before PostUpdate. Do all main logic here
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public virtual void Update(GameTime gameTime, Scene scene)
         {
             foreach (Component component in Components)
             {
-                component.Update(gameTime);
+                component.Update(gameTime, scene);
             }
         }
 
-        public virtual void PostUpdate(GameTime gameTime)
+        /// <summary>
+        /// Fired after Update
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public virtual void PostUpdate(GameTime gameTime, Scene scene)
         {
             foreach (Component component in Components)
             {
-                component.PostUpdate(gameTime);
+                component.PostUpdate(gameTime, scene);
             }
         }
 
