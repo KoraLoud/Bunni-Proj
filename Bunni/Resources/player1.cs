@@ -17,14 +17,14 @@ namespace Bunni
         public int speed = 5;
         public player1(Texture2D tex)
         {
-            this.AddProperty(new PositionVector(this));
-            this.AddComponent(new Render(this, tex));
+            AddProperty(new PositionVector(this));
+            AddComponent(new Render(this, tex));
             Life nLife = new Life(this);
-            this.AddProperty(nLife);
+            AddProperty(nLife);
             KeyboardIn nInput = new KeyboardIn(this);
             nInput.SetDefaultKeyboardKeys();
             AddComponent(nInput);
-            Hitbox nHitbox = new Hitbox(this);
+            BoxCollider nHitbox = new BoxCollider(this);
             AddComponent(nHitbox);
         }
 
