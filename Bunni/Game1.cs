@@ -105,7 +105,7 @@ namespace Bunni
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            scene1.PreUpdate(gameTime);
+            scene1.PreUpdate(gameTime, scene1);
 
             if (player.GetComponent<BoxCollider>().Intersects(hitBox.GetComponent<BoxCollider>()))
             {
@@ -116,8 +116,8 @@ namespace Bunni
             }
 
 
-            scene1.Update(gameTime);
-            scene1.PostUpdate(gameTime);
+            scene1.Update(gameTime, scene1);
+            scene1.PostUpdate(gameTime, scene1);
 
             base.Update(gameTime);
         }

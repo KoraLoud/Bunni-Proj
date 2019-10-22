@@ -106,7 +106,7 @@ namespace Bunni.Resources.Components
 
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, Scene scene)
         {
 
             KeyboardState keyboard = Keyboard.GetState(); //get keyboard state

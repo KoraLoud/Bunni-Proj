@@ -133,5 +133,6 @@ namespace Bunni.Resources.Modules
                 component.Draw(gameTime, spriteBatch);
             }
         }
+
     }
 }

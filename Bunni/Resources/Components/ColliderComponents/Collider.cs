@@ -75,13 +75,5 @@ namespace Bunni.Resources.Components.ColliderComponents
             
             return false;
         }
-        
-        public static Collider operator+(Collider c1, Vector2 v)
-        {
-            Collider newCollider = new Collider(c1.Parent);
-            newCollider._position.Position = Vector2.Add(newCollider._position.Position, v);
-            return newCollider;
-           
-        }
     }
 }

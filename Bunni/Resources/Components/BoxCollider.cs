@@ -63,7 +63,7 @@ namespace Bunni.Resources.Components
             }
         }
 
-        public override void PreUpdate(GameTime gameTime)
+        public override void PreUpdate(GameTime gameTime, Scene scene)
         {
             Render rend = Parent.GetComponent<Render>();
             if (rend != null)
@@ -71,6 +71,15 @@ namespace Bunni.Resources.Components
                 Width = rend.Texture.Width;
                 Height = rend.Texture.Height;
             }
+        }
+
+        public BoxCollider Add(Vector2 v1)
+        {
+            //fix this
+            BoxCollider nCollider = new BoxCollider(Parent);
+            nCollider._position.Position = new Vector2(_position.X, _position.Y);
+            nCollider._position.Position = Vector2.Add(nCollider._position.Position, v1);
+            return nCollider;
         }
 
         public override bool Intersects(Collider c2)

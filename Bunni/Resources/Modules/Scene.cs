@@ -22,27 +22,27 @@ namespace Bunni.Resources.Modules
             SceneEntities.Remove(_entity);
         }
 
-        public virtual void PreUpdate(GameTime gameTime)
+        public virtual void PreUpdate(GameTime gameTime, Scene scene)
         {
             foreach (var e in SceneEntities)
             {
-                e.PreUpdate(gameTime);
+                e.PreUpdate(gameTime, scene);
             }
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, Scene scene)
         {
             foreach(var e in SceneEntities)
             {
-                e.Update(gameTime);
+                e.Update(gameTime, scene);
             }
         }
 
-        public virtual void PostUpdate(GameTime gameTime)
+        public virtual void PostUpdate(GameTime gameTime, Scene scene)
         {
             foreach (var e in SceneEntities)
             {
-                e.PostUpdate(gameTime);
+                e.PostUpdate(gameTime, scene);
             }
         }
 
