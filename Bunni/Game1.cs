@@ -8,25 +8,24 @@ using System;
 
 
 //TODO:
-
-//Components
-    //Input (done)
-    //Collision
-        //hitboxes
+    //hitboxes
+        //box hitbox (done)
         //layers
         //tags
-        //more types
+        //solid objects
+        //more hitbox types
     //Animator
+        //animation atlas (property)
+        //animation track ?
     //physics
-    //Scene
+    //Scene (done)
     //camera
-//Properties
+    //particles
     //Life (done)
         //Health,
         //isDead,
         //Heal,
         //Damage
-    //AnimationAtlas
 
 namespace Bunni
 {
