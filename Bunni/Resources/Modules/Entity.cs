@@ -23,6 +23,7 @@ namespace Bunni.Resources.Modules
         /// <param name="component">The component to add</param>
         public void AddComponent(Component component)
         {
+            component.Parent = this;
             Components.Add(component);
             component.ComponentAdded();
         }
@@ -57,10 +58,11 @@ namespace Bunni.Resources.Modules
         /// Adds propery to entity
         /// </summary>
         /// <param name="p">The property to add</param>
-        public void AddProperty(Property p)
+        public void AddProperty(Property property)
         {
-            Properties.Add(p);
-            p.PropertyAdded();
+            property.Parent = this;
+            Properties.Add(property);
+            property.PropertyAdded();
         }
 
         /// <summary>

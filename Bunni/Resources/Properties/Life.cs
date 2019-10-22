@@ -40,14 +40,14 @@ namespace Bunni.Resources.Properties
         public double MaxHealth { get; set; } = 100.0;
         public bool IsAlive { get; set; } = true;
 
-        public Life(Entity _parent) : base(_parent) { }
+        public Life() { }
 
         /// <summary>
         /// Creates life property and changes starting MaxHealth
         /// </summary>
         /// <param name="_parent"></param>
         /// <param name="_maxHealth"></param>
-        public Life(Entity _parent, double _maxHealth) : base(_parent)
+        public Life(double _maxHealth)
         {
             MaxHealth = _maxHealth;
             Health = _maxHealth;
@@ -59,7 +59,7 @@ namespace Bunni.Resources.Properties
         /// <param name="_parent"></param>
         /// <param name="_maxHealth"></param>
         /// <param name="_minHealth"></param>
-        public Life(Entity _parent, double _maxHealth, double _minHealth) : base(_parent)
+        public Life(double _maxHealth, double _minHealth)
         {
             MaxHealth = _maxHealth;
             MinHealth = _minHealth;
@@ -73,7 +73,7 @@ namespace Bunni.Resources.Properties
         /// <param name="_maxHealth"></param>
         /// <param name="_minHealth"></param>
         /// <param name="_health"></param>
-        public Life(Entity _parent, double _maxHealth, double _minHealth, double _health) : base(_parent)
+        public Life(double _maxHealth, double _minHealth, double _health)
         {
             MaxHealth = _maxHealth;
             MinHealth = _minHealth;

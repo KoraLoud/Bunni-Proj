@@ -39,7 +39,7 @@ namespace Bunni.Resources.Properties
         }
 
 
-        public PositionVector(Entity _parent) : base(_parent)
+        public PositionVector()
         {
             Position = Vector2.Zero;
             Velocity = Vector2.Zero;

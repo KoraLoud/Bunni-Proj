@@ -18,14 +18,14 @@ namespace Bunni
         public int speed = 5;
         public player1(Texture2D tex)
         {
-            AddProperty(new PositionVector(this));
-            AddComponent(new Render(this, tex));
-            Life nLife = new Life(this);
+            AddProperty(new PositionVector());
+            AddComponent(new Render(tex));
+            Life nLife = new Life();
             AddProperty(nLife);
-            KeyboardIn nInput = new KeyboardIn(this);
+            KeyboardIn nInput = new KeyboardIn();
             nInput.SetDefaultKeyboardKeys();
             AddComponent(nInput);
-            BoxCollider nHitbox = new BoxCollider(this);
+            BoxCollider nHitbox = new BoxCollider();
             AddComponent(nHitbox);
         }
 
@@ -42,26 +42,27 @@ namespace Bunni
                 {
                     if (e.GetComponent<BoxCollider>() != null)
                     {
-                            //Console.WriteLine("collider gotteenn");
-
-                    BoxCollider futureBox = GetComponent<BoxCollider>().Add(pos);
-
-                    if (futureBox.Intersects(e.GetComponent<BoxCollider>()))
-                    {
-                       // pos = new Vector2(0, 0);
+                        if (GetComponent<BoxCollider>().OffsetAndCheckCollision(new Vector2(pos.X,0), e.GetComponent<BoxCollider>()))
+                        {
+                                pos = new Vector2(0, pos.Y);
                         
+                        }
+                        if (GetComponent<BoxCollider>().OffsetAndCheckCollision(new Vector2(0, pos.Y), e.GetComponent<BoxCollider>()))
+                        {
+                            pos = new Vector2(pos.X, 0);
+
+                        }
                     }
-                    }
-                    else
-                    {
-                        Console.WriteLine("No collider!");
-                    }
+                        else
+                        {
+                            Console.WriteLine("No collider!");
+                        }
                 }
 
             });
-            Console.WriteLine(entPos.Position);
+            //Console.WriteLine(entPos.Position);
             //Console.WriteLine(pos.X);
-            //entPos.Position = new Vector2(entPos.Position.X + pos.X, entPos.Position.Y + pos.Y);
+            entPos.Position = new Vector2(entPos.Position.X + pos.X, entPos.Position.Y + pos.Y);
             
             
 

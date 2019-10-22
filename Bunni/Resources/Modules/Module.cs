@@ -10,9 +10,5 @@ namespace Bunni.Resources.Modules
     {
         public Entity Parent { get; set; }
 
-        public Module(Entity _parent)
-        {
-            Parent = _parent;
-        }
     }
 }

@@ -61,10 +61,10 @@ namespace Bunni
             Texture2D tex = Content.Load<Texture2D>("img");
             player = new player1(tex);
             scene1 = new Scene();
-            PositionVector nPsV = new PositionVector(hitBox);
-            Render nRen = new Render(hitBox, tex);
+            PositionVector nPsV = new PositionVector();
+            Render nRen = new Render(tex);
             nPsV.Position = new Vector2(400, 200);
-            BoxCollider nHitbox = new BoxCollider(hitBox);
+            BoxCollider nHitbox = new BoxCollider();
             hitBox.AddProperty(nPsV);
             hitBox.AddComponent(nRen);
             hitBox.AddComponent(nHitbox);

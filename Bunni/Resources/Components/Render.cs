@@ -17,11 +17,14 @@ namespace Bunni.Resources.Components
         public Color Color { get; set; }
         private PositionVector _position { get; set; }
 
-        public Render(Entity _parent, Texture2D _texture) : base(_parent)
+        public Render(Texture2D _texture)
         {
             Texture = _texture;
             Color = Color.White;
+        }
 
+        public override void ComponentAdded()
+        {
             PositionVector pos = Parent.GetProperty<PositionVector>();
             _position = pos;
         }

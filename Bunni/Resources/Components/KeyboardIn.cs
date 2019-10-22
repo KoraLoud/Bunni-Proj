@@ -100,12 +100,6 @@ namespace Bunni.Resources.Components
             return this;
         }
 
-
-        public KeyboardIn(Entity _parent) : base(_parent)
-        {
-
-        }
-
         public override void Update(GameTime gameTime, Scene scene)
         {
 

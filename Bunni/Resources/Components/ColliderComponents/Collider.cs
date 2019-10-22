@@ -26,11 +26,11 @@ namespace Bunni.Resources.Components.ColliderComponents
         {
             get
             {
-                return (int)_position.X;
+                return (int)_Position.X;
             }
             set
             {
-                _position.Position = new Vector2(value, _position.Y);
+                _Position.Position = new Vector2(value, _Position.Y);
             }
         }
 
@@ -38,19 +38,12 @@ namespace Bunni.Resources.Components.ColliderComponents
         {
             get
             {
-                return (int)_position.Y;
+                return (int)_Position.Y;
             }
             set
             {
-                _position.Position = new Vector2(_position.X, value);
+                _Position.Position = new Vector2(_Position.X, value);
             }
-        }
-
-
-
-        public Collider(Entity _parent) : base(_parent)
-        {
-
         }
 
         public override void ComponentAdded()
@@ -58,11 +51,11 @@ namespace Bunni.Resources.Components.ColliderComponents
             PositionVector pos = Parent.GetProperty<PositionVector>();
             if (pos == null)
             {
-                pos = new PositionVector(Parent);
+                pos = new PositionVector();
                 Parent.AddProperty(pos);
             }
-
-            _position = pos;
+                
+            _Position = pos;
         }
 
         /// <summary>

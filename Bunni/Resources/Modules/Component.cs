@@ -12,10 +12,6 @@ namespace Bunni.Resources.Modules
     {
         public virtual string Name { get; }
 
-        public Component(Entity _parent) : base(_parent)
-        {
-
-        }
 
         public virtual void ComponentAdded()
         {

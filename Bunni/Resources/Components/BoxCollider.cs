@@ -47,11 +47,6 @@ namespace Bunni.Resources.Components
             }
         }
 
-        public BoxCollider(Entity _parent) : base(_parent)
-        {
-
-        }
-
         public override void ComponentAdded()
         {
             base.ComponentAdded();
@@ -73,13 +68,16 @@ namespace Bunni.Resources.Components
             }
         }
 
-        public BoxCollider Add(Vector2 v1)
+        public bool OffsetAndCheckCollision(Vector2 v1, Collider c2)
         {
-            //fix this
-            BoxCollider nCollider = new BoxCollider(Parent);
-            nCollider._position.Position = new Vector2(_position.X, _position.Y);
-            nCollider._position.Position = Vector2.Add(nCollider._position.Position, v1);
-            return nCollider;
+            DummyCollider nCollider = new DummyCollider
+            {
+                Position = _Position.Position,
+                Width = this.Width,
+                Height = this.Height
+            };
+            nCollider.Position = Vector2.Add(nCollider.Position, v1);
+            return nCollider.Intersects(c2);
         }
 
         public override bool Intersects(Collider c2)
@@ -89,6 +87,24 @@ namespace Bunni.Resources.Components
                     || c2.Top > Bottom
                     || c2.Bottom < Top
                     );
+        }
+
+        private class DummyCollider
+        {
+            public Vector2 Position { get; set; }
+            public int Height { get; set; }
+            public int Width { get; set; }
+
+
+
+            public bool Intersects(Collider c2)
+            {
+                return !(c2.Left > Position.X+Width
+                        || c2.Right < Position.X
+                        || c2.Top > Position.Y+Height
+                        || c2.Bottom < Position.Y
+                        );
+            }
         }
     }
 }
