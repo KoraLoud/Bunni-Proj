@@ -21,6 +21,8 @@ using System;
     //Scene (done)
     //camera
     //particles
+    //render
+        //render layer
     //Life (done)
         //Health,
         //isDead,
