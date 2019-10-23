@@ -68,18 +68,6 @@ namespace Bunni.Resources.Components
             }
         }
 
-        public bool OffsetAndCheckCollision(Vector2 v1, Collider c2)
-        {
-            DummyCollider nCollider = new DummyCollider
-            {
-                Position = _Position.Position,
-                Width = this.Width,
-                Height = this.Height
-            };
-            nCollider.Position = Vector2.Add(nCollider.Position, v1);
-            return nCollider.Intersects(c2);
-        }
-
         public override bool Intersects(Collider c2)
         {
             return !(c2.Left > Right
@@ -89,22 +77,16 @@ namespace Bunni.Resources.Components
                     );
         }
 
-        private class DummyCollider
+        public override bool IntersectsOnLayer(Collider c2)
         {
-            public Vector2 Position { get; set; }
-            public int Height { get; set; }
-            public int Width { get; set; }
-
-
-
-            public bool Intersects(Collider c2)
+            if(CollisionLayer == c2.CollisionLayer)
             {
-                return !(c2.Left > Position.X+Width
-                        || c2.Right < Position.X
-                        || c2.Top > Position.Y+Height
-                        || c2.Bottom < Position.Y
-                        );
+                return Intersects(c2);
+            }else
+            {
+                return false;
             }
         }
+
     }
 }

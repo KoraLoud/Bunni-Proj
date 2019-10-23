@@ -26,7 +26,9 @@ namespace Bunni
             nInput.SetDefaultKeyboardKeys();
             AddComponent(nInput);
             BoxCollider nHitbox = new BoxCollider();
+            nHitbox.CollisionLayer = CollisionLayers.Foreground;
             AddComponent(nHitbox);
+            
         }
 
         public override void Update(GameTime gameTime, Scene scene)
@@ -35,6 +37,7 @@ namespace Bunni
             KeyboardIn entIn = GetComponent<KeyboardIn>();
             PositionVector entPos = GetProperty<PositionVector>();
             Vector2 pos = new Vector2(entIn.InputVector.X * speed, entIn.InputVector.Y * speed);
+            
 
             scene.SceneEntities.ForEach((e) =>
             {
@@ -42,12 +45,14 @@ namespace Bunni
                 {
                     if (e.GetComponent<BoxCollider>() != null)
                     {
-                        if (GetComponent<BoxCollider>().OffsetAndCheckCollision(new Vector2(pos.X,0), e.GetComponent<BoxCollider>()))
+                        GetComponent<BoxCollider>().Offset = new Vector2(pos.X, 0);
+                        if (GetComponent<BoxCollider>().IntersectsOnLayer(e.GetComponent<BoxCollider>()))
                         {
                                 pos = new Vector2(0, pos.Y);
                         
                         }
-                        if (GetComponent<BoxCollider>().OffsetAndCheckCollision(new Vector2(0, pos.Y), e.GetComponent<BoxCollider>()))
+                        GetComponent<BoxCollider>().Offset = new Vector2(0, pos.Y);
+                        if (GetComponent<BoxCollider>().IntersectsOnLayer(e.GetComponent<BoxCollider>()))
                         {
                             pos = new Vector2(pos.X, 0);
 
@@ -60,6 +65,7 @@ namespace Bunni
                 }
 
             });
+            GetComponent<BoxCollider>().Offset = Vector2.Zero;
             //Console.WriteLine(entPos.Position);
             //Console.WriteLine(pos.X);
             entPos.Position = new Vector2(entPos.Position.X + pos.X, entPos.Position.Y + pos.Y);

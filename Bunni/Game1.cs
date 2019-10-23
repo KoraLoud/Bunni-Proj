@@ -65,6 +65,7 @@ namespace Bunni
             Render nRen = new Render(tex);
             nPsV.Position = new Vector2(400, 200);
             BoxCollider nHitbox = new BoxCollider();
+            nHitbox.CollisionLayer = CollisionLayers.Foreground;
             hitBox.AddProperty(nPsV);
             hitBox.AddComponent(nRen);
             hitBox.AddComponent(nHitbox);
@@ -107,7 +108,7 @@ namespace Bunni
 
             scene1.PreUpdate(gameTime, scene1);
 
-            if (player.GetComponent<BoxCollider>().Intersects(hitBox.GetComponent<BoxCollider>()))
+            if (player.GetComponent<BoxCollider>().IntersectsOnLayer(hitBox.GetComponent<BoxCollider>()))
             {
                 player.GetComponent<Render>().Color = Color.Red;
             }else

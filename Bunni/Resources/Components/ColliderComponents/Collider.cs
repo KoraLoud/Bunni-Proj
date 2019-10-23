@@ -21,12 +21,13 @@ namespace Bunni.Resources.Components.ColliderComponents
         public virtual int Left { get;}
         public virtual int Top { get;}
         public virtual int Right { get;}
+        public Vector2 Offset { get; set; } = Vector2.Zero;
 
         public int X
         {
             get
             {
-                return (int)_Position.X;
+                return (int)(_Position.X + Offset.X);
             }
             set
             {
@@ -38,7 +39,7 @@ namespace Bunni.Resources.Components.ColliderComponents
         {
             get
             {
-                return (int)_Position.Y;
+                return (int)(_Position.Y + Offset.Y);
             }
             set
             {
@@ -66,6 +67,11 @@ namespace Bunni.Resources.Components.ColliderComponents
         public virtual bool Intersects(Collider c2)
         {
             
+            return false;
+        }
+
+        public virtual bool IntersectsOnLayer(Collider c2)
+        {
             return false;
         }
     }
