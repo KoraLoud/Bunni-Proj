@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Bunni.Resources.Modules;
-using Bunni.Resources.Properties;
 using Bunni.Resources.Components;
 using System;
 
@@ -10,8 +9,8 @@ using System;
 //TODO:
     //hitboxes
         //box hitbox (done)
-        //layers
-        //tags
+        //layers (done)
+        //tags 
         //solid objects
         //more hitbox types
     //Animator
@@ -66,7 +65,7 @@ namespace Bunni
             nPsV.Position = new Vector2(400, 200);
             BoxCollider nHitbox = new BoxCollider();
             nHitbox.CollisionLayer = CollisionLayers.Foreground;
-            hitBox.AddProperty(nPsV);
+            hitBox.AddComponent(nPsV);
             hitBox.AddComponent(nRen);
             hitBox.AddComponent(nHitbox);
 
