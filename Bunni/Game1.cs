@@ -12,22 +12,15 @@ using System;
         //box hitbox (done)
         //layers
         //tags
-        //solid objects
         //more hitbox types
     //Animator
-        //animation atlas (property)
+        //animation atlas
         //animation track ?
     //physics
-    //Scene (done)
     //camera
     //particles
     //render
         //render layer
-    //Life (done)
-        //Health,
-        //isDead,
-        //Heal,
-        //Damage
 
 namespace Bunni
 {
