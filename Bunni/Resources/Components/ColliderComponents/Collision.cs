@@ -1,5 +1,4 @@
 ﻿using Bunni.Resources.Modules;
-using Bunni.Resources.Properties;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

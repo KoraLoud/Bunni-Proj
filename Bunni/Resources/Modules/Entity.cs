@@ -11,7 +11,6 @@ namespace Bunni.Resources.Modules
     public class Entity
     {
         private List<Component> Components = new List<Component>();
-        private List<Property> Properties = new List<Property>();
 
         public bool OnScreen { get; set; }
         public bool Active { get; set; } = true;
@@ -52,44 +51,6 @@ namespace Bunni.Resources.Modules
                 }
             }
             return null;
-        }
-
-        /// <summary>
-        /// Adds propery to entity
-        /// </summary>
-        /// <param name="p">The property to add</param>
-        public void AddProperty(Property property)
-        {
-            property.Parent = this;
-            Properties.Add(property);
-            property.PropertyAdded();
-        }
-
-        /// <summary>
-        /// Removes property from entity
-        /// </summary>
-        /// <param name="p">The property to remove</param>
-        public void RemoveProperty(Property p)
-        {
-            Properties.Remove(p);
-        }
-
-        /// <summary>
-        /// Returns property that belongs to entity of given type
-        /// </summary>
-        /// <typeparam name="T">The type of property to get</typeparam>
-        /// <returns>The property if it exists, else it returns false</returns>
-        public T GetProperty<T>() where T : Property
-        {
-            foreach(var p in Properties)
-            {
-                if(p is T)
-                {
-                    return p as T;
-                }
-            }
-            return null;
-            
         }
 
         /// <summary>

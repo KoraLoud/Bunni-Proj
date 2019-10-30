@@ -1,5 +1,4 @@
 ﻿using Bunni.Resources.Modules;
-using Bunni.Resources.Properties;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -49,11 +48,11 @@ namespace Bunni.Resources.Components.ColliderComponents
 
         public override void ComponentAdded()
         {
-            PositionVector pos = Parent.GetProperty<PositionVector>();
+            PositionVector pos = Parent.GetComponent<PositionVector>();
             if (pos == null)
             {
                 pos = new PositionVector();
-                Parent.AddProperty(pos);
+                Parent.AddComponent(pos);
             }
                 
             _Position = pos;

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bunni.Resources.Modules;
-using Bunni.Resources.Properties;
 
 namespace Bunni.Resources.Components
 
@@ -25,13 +24,13 @@ namespace Bunni.Resources.Components
 
         public override void ComponentAdded()
         {
-            PositionVector pos = Parent.GetProperty<PositionVector>();
+            PositionVector pos = Parent.GetComponent<PositionVector>();
             _position = pos;
         }
 
         public override void Update(GameTime gameTime, Scene scene)
         {
-            _position = Parent.GetProperty<PositionVector>();
+            _position = Parent.GetComponent<PositionVector>();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

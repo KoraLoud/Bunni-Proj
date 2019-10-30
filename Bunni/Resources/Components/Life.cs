@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Bunni.Resources.Modules;
 
-namespace Bunni.Resources.Properties
+namespace Bunni.Resources.Components
 {
-    public class Life : Property
+    public class Life : Component
     {
 
         private double _health = 100.0;

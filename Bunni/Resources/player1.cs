@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Bunni.Resources.Modules;
-using Bunni.Resources.Properties;
 using Bunni.Resources.Components;
 using Bunni.Resources.Components.ColliderComponents;
 
@@ -18,10 +17,10 @@ namespace Bunni
         public int speed = 5;
         public player1(Texture2D tex)
         {
-            AddProperty(new PositionVector());
+            AddComponent(new PositionVector());
             AddComponent(new Render(tex));
             Life nLife = new Life();
-            AddProperty(nLife);
+            AddComponent(nLife);
             KeyboardIn nInput = new KeyboardIn();
             nInput.SetDefaultKeyboardKeys();
             AddComponent(nInput);
@@ -35,7 +34,7 @@ namespace Bunni
         {
 
             KeyboardIn entIn = GetComponent<KeyboardIn>();
-            PositionVector entPos = GetProperty<PositionVector>();
+            PositionVector entPos = GetComponent<PositionVector>();
             Vector2 pos = new Vector2(entIn.InputVector.X * speed, entIn.InputVector.Y * speed);
             
 

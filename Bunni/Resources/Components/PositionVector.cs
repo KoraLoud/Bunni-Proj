@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Bunni.Resources.Modules;
 
-namespace Bunni.Resources.Properties
+namespace Bunni.Resources.Components
 {
-    public class PositionVector : Property
+    public class PositionVector : Component
     {
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
