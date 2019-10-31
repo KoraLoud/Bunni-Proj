@@ -8,7 +8,6 @@ using Bunni.Resources.Components.Collision;
 
 
 //TODO:
-    //rework basic classes into interfaces
     //check to see if entity already has component
     //hitboxes
         //box hitbox (done)
