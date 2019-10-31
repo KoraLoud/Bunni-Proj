@@ -14,7 +14,6 @@ namespace Bunni.Resources.Components
     {
         public Texture2D Atlas { get; set; }
         public int Frames { get; set; }
-        public int SpaceBetweenFrames = 0;
         public int AnimationDelay { get; set; } = 15;
         public bool IsPlaying { get; private set; } = false;
         public bool Loop { get; set; } = false;
@@ -28,17 +27,16 @@ namespace Bunni.Resources.Components
         private int AnimationHeartbeat;
 
 
-        public Animation(Texture2D atlas, int frames, int space)
+        public Animation(Texture2D atlas, int frames)
         {
             Atlas = atlas;
             Frames = frames;
-            SpaceBetweenFrames = space;
 
             Rectangles = new Rectangle[frames];
             int width = atlas.Width / frames;
             for(int i=0;i< frames; i++)
             {
-                Rectangles[i] = new Rectangle((i*width)+SpaceBetweenFrames, 0, width, atlas.Height);
+                Rectangles[i] = new Rectangle((i*width), 0, width, atlas.Height);
             }
         }
 
