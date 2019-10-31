@@ -13,7 +13,7 @@ using Bunni.Resources.Components.Collision;
     //hitboxes
         //box hitbox (done)
         //layers (done)
-        //tags 
+        //tags (done)
         //more hitbox types
     //Animator
         //animation atlas
