@@ -44,12 +44,12 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Components\BoxCollider.cs" />
-    <Compile Include="Resources\Components\ColliderComponents\Collider.cs" />
-    <Compile Include="Resources\Components\ColliderComponents\Collision.cs" />
-    <Compile Include="Resources\Components\KeyboardIn.cs" />
+    <Compile Include="Resources\Components\Collision\BoxCollider.cs" />
+    <Compile Include="Resources\Components\Collision\Collider.cs" />
+    <Compile Include="Resources\Components\Collision\ICollider.cs" />
+    <Compile Include="Resources\Components\Input.cs" />
     <Compile Include="Resources\Components\Render.cs" />
-    <Compile Include="Resources\Modules\CollisionLayers.cs" />
+    <Compile Include="Resources\Modules\BniTypes.cs" />
     <Compile Include="Resources\player1.cs" />
     <Compile Include="Resources\Modules\Component.cs" />
     <Compile Include="Resources\Modules\Entity.cs" />

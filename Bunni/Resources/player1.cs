@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Bunni.Resources.Modules;
 using Bunni.Resources.Components;
-using Bunni.Resources.Components.ColliderComponents;
+using Bunni.Resources.Components.Collision;
 
 namespace Bunni
 {
@@ -21,11 +21,12 @@ namespace Bunni
             AddComponent(new Render(tex));
             Life nLife = new Life();
             AddComponent(nLife);
-            KeyboardIn nInput = new KeyboardIn();
+            Input nInput = new Input();
             nInput.SetDefaultKeyboardKeys();
             AddComponent(nInput);
-            BoxCollider nHitbox = new BoxCollider();
-            nHitbox.CollisionLayer = CollisionLayers.Foreground;
+            Collider nHitbox = new Collider();
+            nHitbox.CreateHitbox<BoxCollider>();
+            nHitbox.CollisionLayer = BniTypes.CollisionLayer.Foreground;
             AddComponent(nHitbox);
             
         }
@@ -33,25 +34,25 @@ namespace Bunni
         public override void Update(GameTime gameTime, Scene scene)
         {
 
-            KeyboardIn entIn = GetComponent<KeyboardIn>();
+            Input entIn = GetComponent<Input>();
             PositionVector entPos = GetComponent<PositionVector>();
             Vector2 pos = new Vector2(entIn.InputVector.X * speed, entIn.InputVector.Y * speed);
             
 
-            scene.SceneEntities.ForEach((e) =>
+            /*scene.SceneEntities.ForEach((e) =>
             {
                 if (e != this)
                 {
-                    if (e.GetComponent<BoxCollider>() != null)
+                    if (e.GetComponent<Collider>() != null)
                     {
-                        GetComponent<BoxCollider>().Offset = new Vector2(pos.X, 0);
-                        if (GetComponent<BoxCollider>().IntersectsOnLayer(e.GetComponent<BoxCollider>()))
+                        GetComponent<Collider>().Offset = new Vector2(pos.X, 0);
+                        if (GetComponent<Collider>().IntersectsOnLayer(e.GetComponent<Collider>()))
                         {
                                 pos = new Vector2(0, pos.Y);
                         
                         }
-                        GetComponent<BoxCollider>().Offset = new Vector2(0, pos.Y);
-                        if (GetComponent<BoxCollider>().IntersectsOnLayer(e.GetComponent<BoxCollider>()))
+                        GetComponent<Collider>().Offset = new Vector2(0, pos.Y);
+                        if (GetComponent<Collider>().IntersectsOnLayer(e.GetComponent<Collider>()))
                         {
                             pos = new Vector2(pos.X, 0);
 
@@ -63,8 +64,8 @@ namespace Bunni
                         }
                 }
 
-            });
-            GetComponent<BoxCollider>().Offset = Vector2.Zero;
+            });*/
+            GetComponent<Collider>().Offset = Vector2.Zero;
             //Console.WriteLine(entPos.Position);
             //Console.WriteLine(pos.X);
             entPos.Position = new Vector2(entPos.Position.X + pos.X, entPos.Position.Y + pos.Y);

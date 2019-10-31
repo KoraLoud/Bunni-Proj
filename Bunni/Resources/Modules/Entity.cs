@@ -15,6 +15,7 @@ namespace Bunni.Resources.Modules
         public bool OnScreen { get; set; }
         public bool Active { get; set; } = true;
         public bool Visible { get; set; } = true;
+        public BniTypes.Tag Tag { get; set; }
         
         /// <summary>
         /// Used to add a component to an entity

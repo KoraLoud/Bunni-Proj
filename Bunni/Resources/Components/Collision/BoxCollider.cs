@@ -1,4 +1,4 @@
-﻿using Bunni.Resources.Components.ColliderComponents;
+﻿using Bunni.Resources.Components.Collision;
 using Bunni.Resources.Modules;
 using Microsoft.Xna.Framework;
 using System;
@@ -7,50 +7,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bunni.Resources.Components
+namespace Bunni.Resources.Components.Collision
 {
-    public class BoxCollider : Collider
+    public class BoxCollider : ICollider
     {
-
+        public Collider Parent { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public override int Bottom
+        public int Bottom
         {
             get
             {
-                return Y + Height;
+                return Parent.Y + Height;
             }
         }
 
-        public override int Left
+        public int Left
         {
             get
             {
-                return X;
+                return Parent.X;
             }
         }
 
-        public override int Top
+        public int Top
         {
             get
             {
-                return Y;
+                return Parent.Y;
             }
         }
 
-        public override int Right
+        public int Right
         {
             get
             {
-                return X + Width;
+                return Parent.X + Width;
             }
         }
 
-        public override void ComponentAdded()
+        public void ComponentAdded()
         {
-            base.ComponentAdded();
-            Render rend = Parent.GetComponent<Render>();
+            Render rend = Parent.Parent.GetComponent<Render>();
             if (rend != null)
             {
                 Width = rend.Texture.Width;
@@ -58,9 +57,11 @@ namespace Bunni.Resources.Components
             }
         }
 
-        public override void PreUpdate(GameTime gameTime, Scene scene)
+
+
+        public void PreUpdate(GameTime gameTime, Scene scene)
         {
-            Render rend = Parent.GetComponent<Render>();
+            Render rend = Parent.Parent.GetComponent<Render>();
             if (rend != null)
             {
                 Width = rend.Texture.Width;
@@ -68,7 +69,7 @@ namespace Bunni.Resources.Components
             }
         }
 
-        public override bool Intersects(Collider c2)
+        public bool Intersects(ICollider c2)
         {
             return !(c2.Left > Right
                     || c2.Right < Left
@@ -77,16 +78,28 @@ namespace Bunni.Resources.Components
                     );
         }
 
-        public override bool IntersectsOnLayer(Collider c2)
+        public bool IntersectsOnLayer(ICollider c2)
         {
-            if(CollisionLayer == c2.CollisionLayer)
+            if(Parent.CollisionLayer == c2.Parent.CollisionLayer)
             {
                 return Intersects(c2);
-            }else
+            }
+            else
             {
                 return false;
             }
         }
 
+        public bool IntersectsWithTag(ICollider c2)
+        {
+            if(Parent.Parent.Tag == c2.Parent.Parent.Tag)
+            {
+                return Intersects(c2);
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

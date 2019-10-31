@@ -4,14 +4,16 @@ using Microsoft.Xna.Framework.Input;
 using Bunni.Resources.Modules;
 using Bunni.Resources.Components;
 using System;
+using Bunni.Resources.Components.Collision;
 
 
 //TODO:
+    //rework basic classes into interfaces
+    //check to see if entity already has component
     //hitboxes
         //box hitbox (done)
         //layers (done)
         //tags 
-        //solid objects
         //more hitbox types
     //Animator
         //animation atlas
@@ -57,8 +59,9 @@ namespace Bunni
             PositionVector nPsV = new PositionVector();
             Render nRen = new Render(tex);
             nPsV.Position = new Vector2(400, 200);
-            BoxCollider nHitbox = new BoxCollider();
-            nHitbox.CollisionLayer = CollisionLayers.Foreground;
+            Collider nHitbox = new Collider();
+            nHitbox.CreateHitbox<BoxCollider>();
+            nHitbox.CollisionLayer = BniTypes.CollisionLayer.Foreground;
             hitBox.AddComponent(nPsV);
             hitBox.AddComponent(nRen);
             hitBox.AddComponent(nHitbox);
@@ -101,13 +104,19 @@ namespace Bunni
 
             scene1.PreUpdate(gameTime, scene1);
 
-            if (player.GetComponent<BoxCollider>().IntersectsOnLayer(hitBox.GetComponent<BoxCollider>()))
+            if (player.GetComponent<Collider>().IntersectsOnLayer(hitBox.GetComponent<Collider>()))
             {
                 player.GetComponent<Render>().Color = Color.Red;
             }else
             {
                 player.GetComponent<Render>().Color = Color.White;
             }
+
+            BoxCollider pHitBox = player.GetComponent<Collider>().HitBox as BoxCollider;
+            BoxCollider oHitBox = hitBox.GetComponent<Collider>().HitBox as BoxCollider;
+            Console.WriteLine(oHitBox.Top);
+            Console.WriteLine(oHitBox.Height);
+
 
 
             scene1.Update(gameTime, scene1);
