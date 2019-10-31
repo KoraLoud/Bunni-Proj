@@ -112,8 +112,8 @@ namespace Bunni
                 player.GetComponent<Render>().Color = Color.White;
             }
 
-            BoxCollider pHitBox = player.GetComponent<Collider>().HitBox as BoxCollider;
-            BoxCollider oHitBox = hitBox.GetComponent<Collider>().HitBox as BoxCollider;
+            BoxCollider pHitBox = player.GetComponent<Collider>().Hitbox as BoxCollider;
+            BoxCollider oHitBox = hitBox.GetComponent<Collider>().Hitbox as BoxCollider;
             Console.WriteLine(oHitBox.Top);
             Console.WriteLine(oHitBox.Height);
 

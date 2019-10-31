@@ -17,7 +17,7 @@ namespace Bunni.Resources.Components.Collision
     {
 
         public Vector2 Offset { get; set; } = Vector2.Zero;
-        public ICollider HitBox { get; set; }
+        public ICollider Hitbox { get; set; }
         public BniTypes.CollisionLayer CollisionLayer { get; set; }
         public PositionVector PositionC { get; set; }
         protected Vector2 PositionOffset { get; set; } = Vector2.Zero;
@@ -56,55 +56,55 @@ namespace Bunni.Resources.Components.Collision
             }
 
             PositionC = pos;
-            if(HitBox != null)
+            if(Hitbox != null)
             {
-                HitBox.ComponentAdded();
+                Hitbox.ComponentAdded();
             }
             
         }
 
         public void CreateHitbox<T>() where T : ICollider, new()
         {
-            HitBox = new T
+            Hitbox = new T
             {
                 Parent = this
             };
             if(Parent != null)
             {
-                HitBox.ComponentAdded();
+                Hitbox.ComponentAdded();
             }
         }
 
         public bool Intersects(ICollider c2)
         {
-            return HitBox.Intersects(c2);
+            return Hitbox.Intersects(c2);
         }
 
         public bool IntersectsOnLayer(ICollider c2)
         {
-            return HitBox.IntersectsOnLayer(c2);
+            return Hitbox.IntersectsOnLayer(c2);
         }
 
         public bool IntersectsWithTag(ICollider c2)
         {
-            return HitBox.IntersectsWithTag(c2);
+            return Hitbox.IntersectsWithTag(c2);
         }
 
 
 
         public bool Intersects(Collider c2)
         {
-            return HitBox.Intersects(c2.HitBox);
+            return Hitbox.Intersects(c2.Hitbox);
         }
 
         public bool IntersectsOnLayer(Collider c2)
         {
-            return HitBox.IntersectsOnLayer(c2.HitBox);
+            return Hitbox.IntersectsOnLayer(c2.Hitbox);
         }
 
         public bool IntersectsWithTag(Collider c2)
         {
-            return HitBox.IntersectsWithTag(c2.HitBox);
+            return Hitbox.IntersectsWithTag(c2.Hitbox);
         }
 
     }

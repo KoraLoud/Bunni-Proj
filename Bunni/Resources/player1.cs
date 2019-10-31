@@ -39,7 +39,7 @@ namespace Bunni
             Vector2 pos = new Vector2(entIn.InputVector.X * speed, entIn.InputVector.Y * speed);
             
 
-            /*scene.SceneEntities.ForEach((e) =>
+            scene.SceneEntities.ForEach((e) =>
             {
                 if (e != this)
                 {
@@ -64,7 +64,7 @@ namespace Bunni
                         }
                 }
 
-            });*/
+            });
             GetComponent<Collider>().Offset = Vector2.Zero;
             //Console.WriteLine(entPos.Position);
             //Console.WriteLine(pos.X);
