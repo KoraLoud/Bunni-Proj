@@ -54,7 +54,11 @@ namespace Bunni
             // TODO: Add your initialization logic here
             hitBox.Tag = BniTypes.Tag.Player;
             Texture2D tex = Content.Load<Texture2D>("img");
-            player = new player1(tex);
+            Texture2D spinAnimation = Content.Load<Texture2D>("rainbowbox");
+            player = new player1(spinAnimation);
+            Animation spin = new Animation(spinAnimation, 8, 0);
+            player.AddComponent(spin);
+            spin.Loop = true;
             scene1 = new Scene();
             PositionVector nPsV = new PositionVector();
             Render nRen = new Render(tex);
@@ -68,6 +72,7 @@ namespace Bunni
 
             scene1.AddEntity(hitBox);
             scene1.AddEntity(player);
+            spin.Play();
             base.Initialize();
         }
 
@@ -111,11 +116,6 @@ namespace Bunni
             {
                 player.GetComponent<Render>().Color = Color.White;
             }
-
-            BoxCollider pHitBox = player.GetComponent<Collider>().Hitbox as BoxCollider;
-            BoxCollider oHitBox = hitBox.GetComponent<Collider>().Hitbox as BoxCollider;
-            Console.WriteLine(oHitBox.Top);
-            Console.WriteLine(oHitBox.Height);
 
 
 

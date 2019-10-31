@@ -17,6 +17,8 @@ namespace Bunni.Resources.Components.Collision
         int Top { get; }
         int Right { get; }
 
+        int Width { get; set; }
+        int Height { get; set; }
         bool Intersects(ICollider c2);
         bool IntersectsOnLayer(ICollider c2);
         bool IntersectsWithTag(ICollider c2);

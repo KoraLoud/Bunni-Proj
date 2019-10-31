@@ -14,30 +14,32 @@ namespace Bunni.Resources.Components
     {
         public Texture2D Texture { get; set; }
         public Color Color { get; set; }
-        private PositionVector _position { get; set; }
+        public Rectangle RenderRectangle { get; set; }
+        private PositionVector Position { get; set; }
 
-        public Render(Texture2D _texture)
+        public Render(Texture2D texture)
         {
-            Texture = _texture;
+            Texture = texture;
             Color = Color.White;
+            RenderRectangle = new Rectangle(0, 0, texture.Width, Texture.Height);
         }
 
         public override void ComponentAdded()
         {
             PositionVector pos = Parent.GetComponent<PositionVector>();
-            _position = pos;
+            Position = pos;
         }
 
         public override void Update(GameTime gameTime, Scene scene)
         {
-            _position = Parent.GetComponent<PositionVector>();
+            Position = Parent.GetComponent<PositionVector>();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (Parent.Visible)
             {
-                spriteBatch.Draw(Texture, _position.Position, Color);
+                spriteBatch.Draw(Texture, Position.Position, RenderRectangle, Color);
             }
             
         }
