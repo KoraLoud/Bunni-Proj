@@ -28,7 +28,8 @@ namespace Bunni
             nHitbox.CreateHitbox<BoxCollider>();
             nHitbox.CollisionLayer = BniTypes.CollisionLayer.Foreground;
             AddComponent(nHitbox);
-            
+
+            Tag = BniTypes.Tag.Player;
         }
 
         public override void Update(GameTime gameTime, Scene scene)

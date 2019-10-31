@@ -53,6 +53,7 @@ namespace Bunni
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            hitBox.Tag = BniTypes.Tag.Player;
             Texture2D tex = Content.Load<Texture2D>("img");
             player = new player1(tex);
             scene1 = new Scene();
@@ -104,7 +105,7 @@ namespace Bunni
 
             scene1.PreUpdate(gameTime, scene1);
 
-            if (player.GetComponent<Collider>().IntersectsOnLayer(hitBox.GetComponent<Collider>()))
+            if (player.GetComponent<Collider>().IntersectsWithTag(hitBox.GetComponent<Collider>()))
             {
                 player.GetComponent<Render>().Color = Color.Red;
             }else
