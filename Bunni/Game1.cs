@@ -35,12 +35,14 @@ namespace Bunni
         public player1 player;
         public Scene scene1;
         public Entity hitBox = new Entity();
+        public Camera gameCamera;
 
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            gameCamera = new Camera(new Vector2(0, 0), graphics);
         }
 
         /// <summary>
@@ -51,6 +53,7 @@ namespace Bunni
         /// </summary>
         protected override void Initialize()
         {
+            IsMouseVisible = true;
             // TODO: Add your initialization logic here
             hitBox.Tag = BniTypes.Tag.Player;
             Texture2D tex = Content.Load<Texture2D>("img");
@@ -121,7 +124,6 @@ namespace Bunni
 
             scene1.Update(gameTime, scene1);
             scene1.PostUpdate(gameTime, scene1);
-
             base.Update(gameTime);
         }
 
@@ -134,7 +136,7 @@ namespace Bunni
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, gameCamera.TransformMatrix());
             scene1.Draw(gameTime, spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);

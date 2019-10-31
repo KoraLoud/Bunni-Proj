@@ -51,6 +51,7 @@
     <Compile Include="Resources\Components\Input.cs" />
     <Compile Include="Resources\Components\Render.cs" />
     <Compile Include="Resources\Modules\BniTypes.cs" />
+    <Compile Include="Resources\Modules\Camera.cs" />
     <Compile Include="Resources\player1.cs" />
     <Compile Include="Resources\Modules\Component.cs" />
     <Compile Include="Resources\Modules\Entity.cs" />
