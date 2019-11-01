@@ -55,9 +55,7 @@
     <Compile Include="Resources\player1.cs" />
     <Compile Include="Resources\Modules\Component.cs" />
     <Compile Include="Resources\Modules\Entity.cs" />
-    <Compile Include="Resources\Modules\Module.cs" />
     <Compile Include="Resources\Modules\Scene.cs" />
-    <Compile Include="Resources\Components\Life.cs" />
     <Compile Include="Resources\Components\PositionVector.cs" />
   </ItemGroup>
   <ItemGroup>

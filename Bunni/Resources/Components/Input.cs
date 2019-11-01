@@ -147,7 +147,7 @@ namespace Bunni.Resources.Components
         /// <returns></returns>
         public bool KeyIsHeld(Keys keyToFind)
         {
-            KeyListener keyFound = getKeyListenerObject(keyToFind);
+            KeyListener keyFound = GetKeyListenerObject(keyToFind);
             if (keyFound != null)
             {
                 return keyFound.Down;
@@ -164,7 +164,7 @@ namespace Bunni.Resources.Components
         /// <returns>true or false</returns>
         public bool KeyBindExists(Keys keyToFind)
         {
-            KeyListener keyFound = getKeyListenerObject(keyToFind);
+            KeyListener keyFound = GetKeyListenerObject(keyToFind);
             if(keyFound != null)
             {
                 return true;
@@ -183,7 +183,7 @@ namespace Bunni.Resources.Components
         public void BindKey(Keys keyToListen, Action<bool, bool> callback)
         {
             //make sure key isnt already connected
-            KeyListener searchForKey = getKeyListenerObject(keyToListen);
+            KeyListener searchForKey = GetKeyListenerObject(keyToListen);
             if (searchForKey == null)
             {
                 KeyListener newBind = new KeyListener(keyToListen, callback);
@@ -202,7 +202,7 @@ namespace Bunni.Resources.Components
         /// <param name="callback">Changes what happens when you press the key</param>
         public void EditBind(Keys keyToEdit, Keys newKey, Action<bool, bool> callback)
         {
-            KeyListener listenerToEdit = getKeyListenerObject(keyToEdit);
+            KeyListener listenerToEdit = GetKeyListenerObject(keyToEdit);
             if (listenerToEdit != null)
             {
                 listenerToEdit.KeyToListen = newKey;
@@ -219,7 +219,7 @@ namespace Bunni.Resources.Components
         /// <param name="callback">What will happen when the key is pressed</param>
         public void EditBind(Keys keyToEdit, Action<bool, bool> callback)
         {
-            KeyListener listenerToEdit = getKeyListenerObject(keyToEdit);
+            KeyListener listenerToEdit = GetKeyListenerObject(keyToEdit);
             if (listenerToEdit != null)
             {
                 listenerToEdit.KeyPressedCallback = callback;
@@ -237,7 +237,7 @@ namespace Bunni.Resources.Components
         /// <param name="newKey">New key to bind to</param>
         public void EditBind(Keys keyToEdit, Keys newKey)
         {
-            KeyListener listenerToEdit = getKeyListenerObject(keyToEdit);
+            KeyListener listenerToEdit = GetKeyListenerObject(keyToEdit);
             if (listenerToEdit != null)
             {
                 listenerToEdit.KeyToListen = newKey;
@@ -253,7 +253,7 @@ namespace Bunni.Resources.Components
         /// </summary>
         /// <param name="keyToGet">The key of the bind being retrieved</param>
         /// <returns>The KeyListener object of the key</returns>
-        private KeyListener getKeyListenerObject(Keys keyToGet)
+        private KeyListener GetKeyListenerObject(Keys keyToGet)
         {
             return Listeners.Find(l => l.KeyToListen == keyToGet);
         }

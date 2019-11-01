@@ -19,8 +19,6 @@ namespace Bunni
         {
             AddComponent(new PositionVector());
             AddComponent(new Render(tex));
-            Life nLife = new Life();
-            AddComponent(nLife);
             Input nInput = new Input();
             nInput.SetDefaultKeyboardKeys();
 

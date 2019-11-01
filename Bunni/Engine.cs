@@ -42,7 +42,7 @@ namespace Bunni
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             Camera.Init(new Vector2(0, 0), graphics, 800, 480);
-            Camera.UpdateWindow(1920, 1080);
+            Camera.UpdateWindow(800, 480);
 
         }
 

@@ -97,7 +97,6 @@ namespace Bunni.Resources.Modules
                     //Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
                     Matrix.CreateTranslation(new Vector3(Origin, 0));
 
-                Console.WriteLine((float)ActualWidth / VirtualWidth);
                 Updated = false;
             }
 

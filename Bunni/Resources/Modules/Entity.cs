@@ -11,7 +11,6 @@ namespace Bunni.Resources.Modules
     public class Entity
     {
         private List<Component> Components = new List<Component>();
-
         public bool OnScreen { get; set; }
         public bool Active { get; set; } = true;
         public bool Visible { get; set; } = true;

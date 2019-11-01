@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace Bunni.Resources.Modules
 {
-    public class Component : Module
+    public class Component
     {
+        public Entity Parent { get; set; }
         public virtual void ComponentAdded(){}
 
         public virtual void PreUpdate(GameTime gameTime, Scene scene){}
