@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Bunni.Resources.Components.Collision
 {
     /// <summary>
-    /// The collider parent object that handles detecting collisions
+    /// The collider parent object that handles the collider itself
     /// </summary>
     public class Collider : Component
     {

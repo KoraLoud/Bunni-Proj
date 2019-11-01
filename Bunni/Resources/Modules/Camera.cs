@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 
 namespace Bunni.Resources.Modules
 {
-    public class Camera
+    public static class Camera
     {
-        private Vector2 _Position;
-        public Vector2 Position
+        public static int VirtualWidth = 1280;
+        public static int VirtualHeight = 720;
+        public static int ActualHeight;
+        public static int ActualWidth;
+
+        private static GraphicsDeviceManager Graphics;
+        private static Vector2 _Position;
+        public static Vector2 Position
         {
             get
             {
@@ -22,8 +28,8 @@ namespace Bunni.Resources.Modules
                 Updated = true;
             }
         }
-        private float _Zoom = 0.5f;
-        public float Zoom
+        private static float _Zoom = 0.5f;
+        public static float Zoom
         {
             get
             {
@@ -35,8 +41,8 @@ namespace Bunni.Resources.Modules
                 Updated = true;
             }
         }
-        private float _Rotation = 0;
-        public float Rotation
+        private static float _Rotation = 0;
+        public static float Rotation
         {
             get
             {
@@ -49,35 +55,47 @@ namespace Bunni.Resources.Modules
             }
         }
 
-        public Vector2 Origin;
-        public Rectangle View { get; set; }
+        public static Vector2 Origin;
+        public static Rectangle View { get; set; }
 
-        public Matrix Transform = Matrix.Identity;
+        public static Matrix Transform = Matrix.Identity;
 
-        private bool Updated = true;
+        private static bool Updated = true;
 
-        public Camera(Vector2 position, GraphicsDeviceManager graphics)
+        public static void Init(Vector2 position, GraphicsDeviceManager graphics, int virtualWidth, int virtualHeight)
         {
             Position = position;
+            Graphics = graphics;
+            ActualWidth = graphics.PreferredBackBufferWidth;
+            ActualHeight = graphics.PreferredBackBufferHeight;
+            VirtualWidth = virtualHeight;
+            VirtualHeight = virtualHeight;
+            Updated = true;
             View = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             Origin = new Vector2(View.Width / 2, View.Height / 2);
         }
 
-        public void UpdateWindow(GraphicsDeviceManager graphics)
+        public static void UpdateWindow(int width, int height)
         {
-            View = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            ActualWidth = width;
+            ActualHeight = height;
+            Graphics.PreferredBackBufferWidth = width;
+            Graphics.PreferredBackBufferHeight = height;
+            Graphics.ApplyChanges();
+            View = new Rectangle(0, 0, ActualWidth, ActualHeight);
             Origin = new Vector2(View.Width / 2, View.Height / 2);
+            Updated = true;
         }
 
-        public Matrix TransformMatrix()
+        public static Matrix TransformMatrix()
         {
             if(Updated)
             {
                 Transform = Matrix.CreateTranslation(new Vector3(-Position, 0)) *
                     Matrix.CreateRotationZ(Rotation) *
-                    Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
+                    Matrix.CreateScale(new Vector3(Zoom*((float)ActualWidth/VirtualWidth), Zoom*((float)ActualHeight/VirtualHeight), 1)) *
+                    //Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
                     Matrix.CreateTranslation(new Vector3(Origin, 0));
-
                 Updated = false;
             }
 

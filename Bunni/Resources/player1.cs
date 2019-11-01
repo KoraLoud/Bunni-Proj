@@ -23,6 +23,39 @@ namespace Bunni
             AddComponent(nLife);
             Input nInput = new Input();
             nInput.SetDefaultKeyboardKeys();
+
+            nInput.BindKey(Keys.Q, (pressed, held) =>
+            {
+                if(pressed)
+                {
+                    Camera.UpdateWindow(Camera.ActualWidth + 50, Camera.ActualHeight + 50);
+                }
+            });
+
+            nInput.BindKey(Keys.E, (pressed, held) =>
+            {
+                if(pressed)
+                {
+                    Camera.UpdateWindow(Camera.ActualWidth - 50, Camera.ActualHeight - 50);
+                }
+            });
+
+            nInput.BindKey(Keys.Up, (pressed, held) =>
+            {
+                if(pressed || held)
+                {
+                    Camera.Zoom += 0.1f;
+                }
+            });
+
+            nInput.BindKey(Keys.Down, (pressed, held) =>
+            {
+                if (pressed || held)
+                {
+                    Camera.Zoom -= 0.1f;
+                }
+            });
+
             AddComponent(nInput);
             Collider nHitbox = new Collider();
             nHitbox.CreateHitbox<BoxCollider>();

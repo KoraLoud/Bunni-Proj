@@ -28,21 +28,22 @@ namespace Bunni
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class Engine : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public player1 player;
         public Scene scene1;
         public Entity hitBox = new Entity();
-        public Camera gameCamera;
 
 
-        public Game1()
+        public Engine()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            gameCamera = new Camera(new Vector2(0, 0), graphics);
+            Camera.Init(new Vector2(0, 0), graphics, 800, 480);
+            Camera.UpdateWindow(800, 480);
+
         }
 
         /// <summary>
@@ -136,7 +137,7 @@ namespace Bunni
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, gameCamera.TransformMatrix());
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, Camera.TransformMatrix());
             scene1.Draw(gameTime, spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
