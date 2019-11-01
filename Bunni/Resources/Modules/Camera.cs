@@ -9,8 +9,8 @@ namespace Bunni.Resources.Modules
 {
     public static class Camera
     {
-        public static int VirtualWidth = 1280;
-        public static int VirtualHeight = 720;
+        public static int VirtualWidth;
+        public static int VirtualHeight;
         public static int ActualHeight;
         public static int ActualWidth;
 
@@ -68,7 +68,7 @@ namespace Bunni.Resources.Modules
             Graphics = graphics;
             ActualWidth = graphics.PreferredBackBufferWidth;
             ActualHeight = graphics.PreferredBackBufferHeight;
-            VirtualWidth = virtualHeight;
+            VirtualWidth = virtualWidth;
             VirtualHeight = virtualHeight;
             Updated = true;
             View = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
@@ -96,6 +96,8 @@ namespace Bunni.Resources.Modules
                     Matrix.CreateScale(new Vector3(Zoom*((float)ActualWidth/VirtualWidth), Zoom*((float)ActualHeight/VirtualHeight), 1)) *
                     //Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
                     Matrix.CreateTranslation(new Vector3(Origin, 0));
+
+                Console.WriteLine((float)ActualWidth / VirtualWidth);
                 Updated = false;
             }
 
