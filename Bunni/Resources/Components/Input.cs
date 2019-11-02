@@ -41,7 +41,7 @@ namespace Bunni.Resources.Components
             return _SetDefaultKeyboardKeys(UpK, LeftK, DownK, RightK);
         }
 
-        private Input _SetDefaultKeyboardKeys(Keys UpK, Keys LeftK, Keys DownK, Keys RightK)
+        private void _SetDefaultKeyboardKeys(Keys UpK, Keys LeftK, Keys DownK, Keys RightK)
         {
             BindKey(UpK, (pressed, held) =>
             {
@@ -97,7 +97,6 @@ namespace Bunni.Resources.Components
                 }
                 InputVector = input;
             });
-            return this;
         }
 
         public override void Update(GameTime gameTime, Scene scene)
