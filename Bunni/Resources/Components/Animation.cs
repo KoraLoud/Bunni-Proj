@@ -58,14 +58,6 @@ namespace Bunni.Resources.Components
             }
         }
 
-        public override void ComponentAdded()
-        {
-            Render EntityRenderComp = Parent.GetComponent<Render>();
-            EntityRenderComp.Texture = Atlas;
-            EntityRenderComp.RenderRectangle = Rectangles[0];
-            
-        }
-
         public override void Update(GameTime gameTime, Scene scene)
         {
             if(IsPlaying)
@@ -115,6 +107,7 @@ namespace Bunni.Resources.Components
             IsPlaying = true;
             Render EntityRenderComp = Parent.GetComponent<Render>();
             EntityRenderComp.Texture = Atlas;
+            EntityRenderComp.RenderRectangle = Rectangles[0];
         }
 
         /// <summary>
@@ -133,6 +126,7 @@ namespace Bunni.Resources.Components
             IsPlaying = true;
             Render EntityRenderComp = Parent.GetComponent<Render>();
             EntityRenderComp.Texture = Atlas;
+            EntityRenderComp.RenderRectangle = Rectangles[CurrentFrame];
         }
     }
 }
