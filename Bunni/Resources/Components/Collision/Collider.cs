@@ -85,9 +85,9 @@ namespace Bunni.Resources.Components.Collision
             return Hitbox.IntersectsOnLayer(c2);
         }
 
-        public bool IntersectsWithTag(ICollider c2)
+        public bool IntersectsWithTag(ICollider c2, BniTypes.Tag Tag)
         {
-            return Hitbox.IntersectsWithTag(c2);
+            return Hitbox.IntersectsWithTag(c2, Tag);
         }
 
 
@@ -102,9 +102,9 @@ namespace Bunni.Resources.Components.Collision
             return Hitbox.IntersectsOnLayer(c2.Hitbox);
         }
 
-        public bool IntersectsWithTag(Collider c2)
+        public bool IntersectsWithTag(Collider c2, BniTypes.Tag Tag)
         {
-            return Hitbox.IntersectsWithTag(c2.Hitbox);
+            return Hitbox.IntersectsWithTag(c2.Hitbox, Tag);
         }
 
     }

@@ -21,7 +21,7 @@ namespace Bunni.Resources.Components.Collision
         int Height { get; set; }
         bool Intersects(ICollider c2);
         bool IntersectsOnLayer(ICollider c2);
-        bool IntersectsWithTag(ICollider c2);
+        bool IntersectsWithTag(ICollider c2, BniTypes.Tag Tag);
         void ComponentAdded();
         void PreUpdate(GameTime gameTime, Scene scene);
     }

@@ -90,9 +90,9 @@ namespace Bunni.Resources.Components.Collision
             }
         }
 
-        public bool IntersectsWithTag(ICollider c2)
+        public bool IntersectsWithTag(ICollider c2, BniTypes.Tag Tag)
         {
-            if(Parent.Parent.Tag == c2.Parent.Parent.Tag)
+            if(Tag == c2.Parent.Parent.Tag)
             {
                 return Intersects(c2);
             }
