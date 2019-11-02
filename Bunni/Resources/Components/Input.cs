@@ -183,7 +183,7 @@ namespace Bunni.Resources.Components
                 Listeners.Add(newBind);
             }else
             {
-                throw new ArgumentException("This key is already bound");
+                Console.WriteLine("This key is already bound");
             }
         }
 
@@ -202,7 +202,7 @@ namespace Bunni.Resources.Components
                 listenerToEdit.KeyPressedCallback = callback;
             }else
             {
-                throw new ArgumentException("This key bind does not exist");
+                Console.WriteLine("This key bind does not exist");
             }
         }
         /// <summary>
@@ -219,7 +219,7 @@ namespace Bunni.Resources.Components
             }
             else
             {
-                throw new ArgumentException("This key bind does not exist");
+                Console.WriteLine("This key bind does not exist");
             }
         }
 
@@ -237,7 +237,7 @@ namespace Bunni.Resources.Components
             }
             else
             {
-                throw new ArgumentException("This key bind does not exist");
+                Console.WriteLine("This key bind does not exist");
             }
         }
 
