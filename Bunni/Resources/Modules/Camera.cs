@@ -62,6 +62,13 @@ namespace Bunni.Resources.Modules
 
         private static bool Updated = true;
 
+        /// <summary>
+        /// Called to initialize the camera
+        /// </summary>
+        /// <param name="position">The starting position of the camera</param>
+        /// <param name="graphics">The GraphicsDeviceManager of the game</param>
+        /// <param name="virtualWidth">The virtual width that is being drawn to before re-scaling</param>
+        /// <param name="virtualHeight">The virtual height that is being drawn to before re-scaling</param>
         public static void Init(Vector2 position, GraphicsDeviceManager graphics, int virtualWidth, int virtualHeight)
         {
             Position = position;
@@ -75,6 +82,11 @@ namespace Bunni.Resources.Modules
             Origin = new Vector2(View.Width / 2, View.Height / 2);
         }
 
+        /// <summary>
+        /// Called every time the resolution is needed to be updated
+        /// </summary>
+        /// <param name="width">New width of the window</param>
+        /// <param name="height">New height of the window</param>
         public static void UpdateWindow(int width, int height)
         {
             ActualWidth = width;
@@ -87,6 +99,10 @@ namespace Bunni.Resources.Modules
             Updated = true;
         }
 
+        /// <summary>
+        /// Gets the Matrix from the camera. Call this in the SpriteBatch.Begin() function before drawing.
+        /// </summary>
+        /// <returns></returns>
         public static Matrix TransformMatrix()
         {
             if(Updated)

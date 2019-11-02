@@ -8,6 +8,9 @@ namespace Bunni.Resources.Modules
 {
     public class BniTypes
     {
+        /// <summary>
+        /// Collision layer the entity is on
+        /// </summary>
         public enum CollisionLayer
         {
             Background,
@@ -15,6 +18,9 @@ namespace Bunni.Resources.Modules
             Foreground
         }
 
+        /// <summary>
+        /// Type of tag for an entity
+        /// </summary>
         public enum Tag
         {
             Player,

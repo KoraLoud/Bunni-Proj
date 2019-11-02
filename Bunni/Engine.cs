@@ -78,6 +78,7 @@ namespace Bunni
             scene1.AddEntity(player);
             rainbowAnimation.Play();
             base.Initialize();
+
         }
 
         /// <summary>
@@ -111,7 +112,7 @@ namespace Bunni
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            scene1.PreUpdate(gameTime, scene1);
+            scene1.PreUpdate(gameTime);
 
             if (player.GetComponent<Collider>().IntersectsWithTag(hitBox.GetComponent<Collider>()))
             {
@@ -123,8 +124,8 @@ namespace Bunni
 
 
 
-            scene1.Update(gameTime, scene1);
-            scene1.PostUpdate(gameTime, scene1);
+            scene1.Update(gameTime);
+            scene1.PostUpdate(gameTime);
             base.Update(gameTime);
         }
 

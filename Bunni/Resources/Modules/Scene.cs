@@ -12,37 +12,46 @@ namespace Bunni.Resources.Modules
     {
         public List<Entity> SceneEntities = new List<Entity>();
 
-        public void AddEntity(Entity _entity)
+        /// <summary>
+        /// Adds an entity to the scene
+        /// </summary>
+        /// <param name="_entity">Entity to be added</param>
+        public void AddEntity(Entity entity)
         {
-            SceneEntities.Add(_entity);
+            SceneEntities.Add(entity);
         }
 
-        public void RemoveEntity(Entity _entity)
+        /// <summary>
+        /// Removes an entity from the scene
+        /// </summary>
+        /// <param name="entity">Entity to be removed</param>
+        public void RemoveEntity(Entity entity)
         {
-            SceneEntities.Remove(_entity);
+            SceneEntities.Remove(entity);
         }
 
-        public virtual void PreUpdate(GameTime gameTime, Scene scene)
+
+        public virtual void PreUpdate(GameTime gameTime)
         {
             foreach (var e in SceneEntities)
             {
-                e.PreUpdate(gameTime, scene);
+                e.PreUpdate(gameTime, this);
             }
         }
 
-        public virtual void Update(GameTime gameTime, Scene scene)
+        public virtual void Update(GameTime gameTime)
         {
             foreach(var e in SceneEntities)
             {
-                e.Update(gameTime, scene);
+                e.Update(gameTime, this);
             }
         }
 
-        public virtual void PostUpdate(GameTime gameTime, Scene scene)
+        public virtual void PostUpdate(GameTime gameTime)
         {
             foreach (var e in SceneEntities)
             {
-                e.PostUpdate(gameTime, scene);
+                e.PostUpdate(gameTime, this);
             }
         }
 
