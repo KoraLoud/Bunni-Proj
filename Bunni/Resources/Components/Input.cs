@@ -23,9 +23,9 @@ namespace Bunni.Resources.Components
         /// Sets default movement keys to WASD
         /// </summary>
         /// <returns>keyboard input component</returns>
-        public Input SetDefaultKeyboardKeys()
+        public void SetDefaultKeyboardKeys()
         {
-            return _SetDefaultKeyboardKeys(Keys.W, Keys.A, Keys.S, Keys.D);
+            _SetDefaultKeyboardKeys(Keys.W, Keys.A, Keys.S, Keys.D);
         }
 
         /// <summary>
@@ -36,9 +36,9 @@ namespace Bunni.Resources.Components
         /// <param name="DownK">Key to set input vector Y position to 1</param>
         /// <param name="RightK">Key to set input vector X position to 1</param>
         /// <returns></returns>
-        public Input SetDefaultKeyboardKeys(Keys UpK, Keys LeftK, Keys DownK, Keys RightK)
+        public void SetDefaultKeyboardKeys(Keys UpK, Keys LeftK, Keys DownK, Keys RightK)
         {
-            return _SetDefaultKeyboardKeys(UpK, LeftK, DownK, RightK);
+            _SetDefaultKeyboardKeys(UpK, LeftK, DownK, RightK);
         }
 
         private void _SetDefaultKeyboardKeys(Keys UpK, Keys LeftK, Keys DownK, Keys RightK)

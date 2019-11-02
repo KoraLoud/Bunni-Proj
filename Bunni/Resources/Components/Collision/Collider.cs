@@ -19,18 +19,18 @@ namespace Bunni.Resources.Components.Collision
         public Vector2 Offset { get; set; } = Vector2.Zero;
         public ICollider Hitbox { get; set; }
         public BniTypes.CollisionLayer CollisionLayer { get; set; }
-        public PositionVector PositionC { get; set; }
+        private PositionVector PositionVec { get; set; }
         protected Vector2 PositionOffset { get; set; } = Vector2.Zero;
 
         public int X
         {
             get
             {
-                return (int)(PositionC.X + Offset.X);
+                return (int)(PositionVec.X + Offset.X);
             }
             set
             {
-                PositionC.Position = new Vector2(value, PositionC.Y);
+                PositionVec.Position = new Vector2(value, PositionVec.Y);
             }
         }
 
@@ -38,11 +38,11 @@ namespace Bunni.Resources.Components.Collision
         {
             get
             {
-                return (int)(PositionC.Y + Offset.Y);
+                return (int)(PositionVec.Y + Offset.Y);
             }
             set
             {
-                PositionC.Position = new Vector2(PositionC.X, value);
+                PositionVec.Position = new Vector2(PositionVec.X, value);
             }
         }
 
@@ -55,7 +55,7 @@ namespace Bunni.Resources.Components.Collision
                 Parent.AddComponent(pos);
             }
 
-            PositionC = pos;
+            PositionVec = pos;
             if(Hitbox != null)
             {
                 Hitbox.ComponentAdded();
