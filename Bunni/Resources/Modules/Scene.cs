@@ -15,7 +15,7 @@ namespace Bunni.Resources.Modules
         /// <summary>
         /// Adds an entity to the scene
         /// </summary>
-        /// <param name="_entity">Entity to be added</param>
+        /// <param name="entity">Entity to be added</param>
         public void AddEntity(Entity entity)
         {
             SceneEntities.Add(entity);
