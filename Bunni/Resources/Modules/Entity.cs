@@ -12,7 +12,6 @@ namespace Bunni.Resources.Modules
     {
         private List<Component> Components = new List<Component>();
         public bool Active { get; set; } = true;
-        public bool Visible { get; set; } = true;
         public BniTypes.Tag Tag { get; set; }
         
         /// <summary>

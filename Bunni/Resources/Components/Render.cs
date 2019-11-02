@@ -15,6 +15,7 @@ namespace Bunni.Resources.Components
         public Texture2D Texture { get; set; }
         public Color Color { get; set; }
         public Rectangle RenderRectangle { get; set; }
+        public bool Visible { get; set; } = true;
         private PositionVector Position { get; set; }
 
         public Render(Texture2D texture)
@@ -37,7 +38,7 @@ namespace Bunni.Resources.Components
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (Parent.Visible)
+            if (Visible)
             {
                 spriteBatch.Draw(Texture, Position.Position, RenderRectangle, Color);
             }
