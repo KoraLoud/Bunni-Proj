@@ -114,7 +114,7 @@ namespace Bunni
 
             scene1.PreUpdate(gameTime);
 
-            if (player.GetComponent<Collider>().IntersectsWithTag(hitBox.GetComponent<Collider>()))
+            if (player.GetComponent<Collider>().IntersectsWithTag(hitBox.GetComponent<Collider>(), player.Tag))
             {
                 player.GetComponent<Render>().Color = Color.Red;
             }else
