@@ -141,20 +141,13 @@ namespace Bunni.Resources.Components
         }
 
         /// <summary>
-        /// Checks if a key is being held. Throws exception if keybind does not exist.
+        /// Checks if a key is being held.
         /// </summary>
-        /// <param name="keyToFind">Key to check the state of</param>
         /// <returns></returns>
-        public bool KeyIsHeld(Keys keyToFind)
+        public bool KeyIsHeld(Keys keyToCheck)
         {
-            KeyListener keyFound = GetKeyListenerObject(keyToFind);
-            if (keyFound != null)
-            {
-                return keyFound.Down;
-            }else
-            {
-                throw new ArgumentException("Key is not bound!");
-            }
+            KeyboardState keyboard = Keyboard.GetState();
+            return keyboard.IsKeyDown(keyToCheck);
         }
 
         /// <summary>
