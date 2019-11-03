@@ -11,6 +11,17 @@ namespace Bunni.Resources.Modules
     public class Scene
     {
         public List<Entity> SceneEntities = new List<Entity>();
+        private Action onLoad;
+
+        public void SetOnLoad(Action callback)
+        {
+            onLoad = callback;
+        }
+
+        public void Load()
+        {
+            onLoad();
+        }
 
         /// <summary>
         /// Adds an entity to the scene
@@ -41,7 +52,7 @@ namespace Bunni.Resources.Modules
 
         public virtual void Update(GameTime gameTime)
         {
-            foreach(var e in SceneEntities)
+            foreach (var e in SceneEntities)
             {
                 e.Update(gameTime, this);
             }
@@ -57,7 +68,7 @@ namespace Bunni.Resources.Modules
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            foreach(var e in SceneEntities)
+            foreach (var e in SceneEntities)
             {
                 e.Draw(gameTime, spriteBatch);
             }
