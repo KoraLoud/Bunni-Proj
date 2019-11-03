@@ -41,7 +41,8 @@ namespace Bunni
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            Camera.Init(new Vector2(0, 0), graphics, 800, 480);
+            Camera.Init(new Vector2(400, 240), graphics, 800, 480);
+            Camera.Zoom = 1f;
             Camera.UpdateWindow(800, 480);
 
         }
@@ -122,7 +123,14 @@ namespace Bunni
                 player.GetComponent<Render>().Color = Color.White;
             }
 
+            Vector2 mouseState = Camera.GetMouseWorldPosition();
 
+            Console.WriteLine("World Position of mouse: "+mouseState);
+            Console.WriteLine("Screen Position of mouse: " + new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
+            //Console.WriteLine(mouseState.Y);
+            Console.WriteLine("World Position of player:" + player.GetComponent<PositionVector>().Position);
+            Console.WriteLine("Screen Position of player: "+Camera.GetEntityScreenPosition(player));
+            Console.WriteLine("");
 
             scene1.Update(gameTime);
             scene1.PostUpdate(gameTime);

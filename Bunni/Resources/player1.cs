@@ -14,7 +14,7 @@ namespace Bunni
 {
     public class player1 : Entity //this is just a class for testing framework functionality
     {
-        public int speed = 5;
+        public int speed = 1;
         public player1(Texture2D tex)
         {
             AddComponent(new PositionVector());

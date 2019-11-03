@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Bunni.Resources.Components;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,6 +99,47 @@ namespace Bunni.Resources.Modules
             View = new Rectangle(0, 0, ActualWidth, ActualHeight);
             Origin = new Vector2(View.Width / 2, View.Height / 2);
             Updated = true;
+        }
+
+        /// <summary>
+        /// Gets the world position of the mouse
+        /// </summary>
+        /// <returns></returns>
+        public static Vector2 GetMouseWorldPosition()
+        {
+            Vector2 ScreenPosOfWorldPosition0 = WorldPosToScreenPos(new Vector2(0, 0));
+            MouseState mouse = Mouse.GetState();
+            Vector2 mouseCoors = new Vector2(mouse.X, mouse.Y);
+            Vector2 WorldPos = mouseCoors - ScreenPosOfWorldPosition0;
+            WorldPos = Vector2.Floor(WorldPos);
+            return WorldPos;
+        }
+
+        /// <summary>
+        /// Takes a world position, then returns where it is at on the screen
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <returns></returns>
+        public static Vector2 WorldPosToScreenPos(Vector2 pos)
+        {
+            return Vector2.Transform(pos, Transform);
+        }
+
+        /// <summary>
+        /// Returns where on the screen
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public static Vector2 GetEntityScreenPosition(Entity e)
+        {
+            PositionVector PositionVec = e.GetComponent<PositionVector>();
+            if(PositionVec != null)
+            {
+                Vector2 newPos = WorldPosToScreenPos(PositionVec.Position);
+                return newPos;
+            }
+            return Vector2.Zero;
+
         }
 
         /// <summary>
