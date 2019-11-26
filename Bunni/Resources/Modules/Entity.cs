@@ -13,7 +13,7 @@ namespace Bunni.Resources.Modules
         private List<Component> Components = new List<Component>();
         public bool Active { get; set; } = true;
         public BniTypes.Tag Tag { get; set; }
-        
+
         /// <summary>
         /// Used to add a component to an entity
         /// </summary>
@@ -41,14 +41,31 @@ namespace Bunni.Resources.Modules
         /// <returns>The component if it exists, else it returns false</returns>
         public T GetComponent<T>() where T : Component
         {
-            foreach(var c in Components)
+            foreach (var c in Components)
             {
-                if(c is T)
+                if (c is T)
                 {
                     return c as T;
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Returns if an entity has a given component or not
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public bool HasComponent<T>() where T : Component
+        {
+            foreach (var c in Components)
+            {
+                if (c is T)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
