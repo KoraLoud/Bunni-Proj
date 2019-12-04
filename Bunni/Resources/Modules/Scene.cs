@@ -13,7 +13,6 @@ namespace Bunni.Resources.Modules
     {
         public List<Entity> SceneEntities = new List<Entity>();
 
-        private bool Sort = false;
         private Action onLoad;
 
         public void SetOnLoad(Action callback)
@@ -33,7 +32,7 @@ namespace Bunni.Resources.Modules
         public void AddEntity(Entity entity)
         {
             SceneEntities.Add(entity);
-            Sort = true;
+            SortEntities();
         }
 
         /// <summary>
@@ -95,12 +94,13 @@ namespace Bunni.Resources.Modules
             }
         }
 
+        private void SortEntities()
+        {
+            SceneEntities.Sort(SortByZ);
+        }
+
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (Sort)
-            {
-                SceneEntities.Sort(SortByZ);
-            }
             foreach (var e in SceneEntities)
             {
                 e.Draw(gameTime, spriteBatch);
