@@ -128,9 +128,14 @@ namespace Bunni
             Console.WriteLine("World Position of mouse: "+mouseState);
             Console.WriteLine("Screen Position of mouse: " + new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             //Console.WriteLine(mouseState.Y);
-            Console.WriteLine("World Position of player:" + player.GetComponent<PositionVector>().Position);
-            Console.WriteLine("Screen Position of player: "+Camera.GetEntityScreenPosition(player));
+            Console.WriteLine("World Position of camera:" + Camera.Position);
             Console.WriteLine("");
+            MouseState mouse = Mouse.GetState();
+            if(mouse.LeftButton == ButtonState.Pressed)
+            {
+                Console.WriteLine("Mouse Clicked");
+                Camera.Lerp(Camera.GetMouseWorldPosition(), 1000);
+            }
 
             scene1.Update(gameTime);
             scene1.PostUpdate(gameTime);
@@ -146,7 +151,7 @@ namespace Bunni
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, Camera.TransformMatrix());
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, Camera.TransformMatrix(gameTime));
             scene1.Draw(gameTime, spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);

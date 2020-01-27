@@ -42,7 +42,7 @@ namespace Bunni
             {
                 if(pressed || held)
                 {
-                    Camera.Zoom += 0.1f;
+                    Camera.Position += new Vector2(0,-5);
                 }
             });
 
@@ -50,7 +50,39 @@ namespace Bunni
             {
                 if (pressed || held)
                 {
-                    Camera.Zoom -= 0.1f;
+                    Camera.Position += new Vector2(0,5);
+                }
+            });
+
+            nInput.BindKey(Keys.Left, (pressed, held) =>
+            {
+                if (pressed || held)
+                {
+                    Camera.Position += new Vector2(-5, 0);
+                }
+            });
+
+            nInput.BindKey(Keys.Right, (pressed, held) =>
+            {
+                if (pressed || held)
+                {
+                    Camera.Position += new Vector2(5, 0);
+                }
+            });
+
+            nInput.BindKey(Keys.R, (pressed, held) =>
+            {
+                if (pressed || held)
+                {
+                    Camera.Zoom -= 0.01f;
+                }
+            });
+
+            nInput.BindKey(Keys.F, (pressed, held) =>
+            {
+                if (pressed || held)
+                {
+                    Camera.Zoom += 0.01f;
                 }
             });
 
