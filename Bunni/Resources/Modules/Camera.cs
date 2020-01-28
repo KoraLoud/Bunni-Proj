@@ -182,6 +182,7 @@ namespace Bunni.Resources.Modules
                 }
             }
             ElapsedTime %= 100000;
+            startTime %= 100000;
             stopTime %= 100000;
             return Transform;
         }

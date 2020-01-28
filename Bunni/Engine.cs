@@ -134,7 +134,7 @@ namespace Bunni
             if(mouse.LeftButton == ButtonState.Pressed)
             {
                 Console.WriteLine("Mouse Clicked");
-                Camera.Lerp(Camera.GetMouseWorldPosition(), 1000);
+                player.GetComponent<PositionVector>().Lerp(new Vector2(mouse.Position.X, mouse.Position.Y), 1000);
             }
 
             scene1.Update(gameTime);
