@@ -13,6 +13,7 @@ namespace Bunni.Resources.Components
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
         public Vector2 Acceleration { get; set; }
+        public bool Lerping { get; private set; } = false;
 
         public float X
         {
@@ -50,9 +51,9 @@ namespace Bunni.Resources.Components
         {
             ElapsedTime += gameTime.ElapsedGameTime.Milliseconds;
 
-            if(Lerping)
+            if (Lerping)
             {
-                if(initialFrame)
+                if (initialFrame)
                 {
                     startTime = ElapsedTime;
                     stopTime += startTime;
@@ -60,14 +61,15 @@ namespace Bunni.Resources.Components
                     initialFrame = false;
                 }
 
-                float percentage = (ElapsedTime - startTime) / ((float)stopTime - startTime);
-                if (percentage >= 1)
+                float percentage = Math.Min((ElapsedTime - startTime) / ((float)stopTime - startTime), 1);
+                Position = new Vector2(StartPosition.X + (LerpPosition.X - StartPosition.X) * percentage, StartPosition.Y + (LerpPosition.Y - StartPosition.Y) * percentage);
+                if (Finished)
                 {
                     Lerping = false;
                 }
-                else
+                if (percentage == 1 && !Finished)
                 {
-                    Position = new Vector2(StartPosition.X + (LerpPosition.X - StartPosition.X) * percentage, StartPosition.Y + (LerpPosition.Y - StartPosition.Y) * percentage);
+                    Finished = true;
                 }
 
             }
@@ -80,16 +82,17 @@ namespace Bunni.Resources.Components
 
         private Vector2 StartPosition;
         private Vector2 LerpPosition;
-        private bool Lerping = false;
         private bool initialFrame = false;
         private int startTime;
         private int stopTime;
+        private Boolean Finished = true;
         public void Lerp(Vector2 lerpPosition, int duration)
         {
             Lerping = true;
             initialFrame = true;
             stopTime = duration;
             LerpPosition = lerpPosition;
+            Finished = false;
         }
 
     }
