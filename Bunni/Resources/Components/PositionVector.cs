@@ -85,7 +85,7 @@ namespace Bunni.Resources.Components
         private bool initialFrame = false;
         private int startTime;
         private int stopTime;
-        private Boolean Finished = true;
+        private bool Finished = true;
         public void Lerp(Vector2 lerpPosition, int duration)
         {
             Lerping = true;

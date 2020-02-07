@@ -195,7 +195,7 @@ namespace Bunni.Resources.Modules
         private static bool initialFrame = false;
         private static int startTime;
         private static int stopTime;
-        private static Boolean Finished = true;
+        private static bool Finished = true;
 
         /// <summary>
         /// Lerp camera to one position to another
