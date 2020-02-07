@@ -21,9 +21,9 @@ namespace Bunni.Resources.Components
         /// </summary>
         public int Frames { get; set; }
         /// <summary>
-        /// The amount of frames in between each change in animation frame
+        /// The amount of miliseconds in between each frame
         /// </summary>
-        public int AnimationSpeed { get; set; } = 15;
+        public int AnimationSpeed { get; set; } = 250;
         /// <summary>
         /// Returns whether the animation is playing or not
         /// </summary>
@@ -52,25 +52,30 @@ namespace Bunni.Resources.Components
 
             Rectangles = new Rectangle[frames];
             int width = atlas.Width / frames;
-            for(int i=0;i< frames; i++)
+            for (int i = 0; i < frames; i++)
             {
-                Rectangles[i] = new Rectangle((i*width), 0, width, atlas.Height);
+                Rectangles[i] = new Rectangle((i * width), 0, width, atlas.Height);
             }
+        }
+
+        public override void ComponentAdded()
+        {
+            Parent.GetComponent<Render>().RenderRectangle = Rectangles[0];
         }
 
         public override void Update(GameTime gameTime, Scene scene)
         {
-            if(IsPlaying)
+            if (IsPlaying)
             {
-                AnimationHeartbeat++;
-                if(AnimationHeartbeat>= AnimationSpeed)
+                AnimationHeartbeat += gameTime.ElapsedGameTime.Milliseconds;
+                if (AnimationHeartbeat >= AnimationSpeed)
                 {
                     AnimationHeartbeat = 0;
                     CurrentFrame++;
                 }
-                if(CurrentFrame>=Frames)
+                if (CurrentFrame >= Frames)
                 {
-                    if(Loop)
+                    if (Loop)
                     {
                         CurrentFrame = 0;
                     }
@@ -82,7 +87,7 @@ namespace Bunni.Resources.Components
                 Render EntityRenderComp = Parent.GetComponent<Render>();
                 EntityRenderComp.RenderRectangle = Rectangles[CurrentFrame];
                 Collider EntityCollider = Parent.GetComponent<Collider>();
-                if(EntityCollider != null)
+                if (EntityCollider != null)
                 {
                     EntityCollider.Hitbox.Width = Atlas.Width / Frames;
                 }
