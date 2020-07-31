@@ -131,13 +131,9 @@ namespace Bunni.Resources.Modules
         /// <returns></returns>
         public static Vector2 GetEntityScreenPosition(Entity e)
         {
-            PositionVector PositionVec = e.GetComponent<PositionVector>();
-            if (PositionVec != null)
-            {
-                Vector2 newPos = WorldPosToScreenPos(PositionVec.Position);
-                return newPos;
-            }
-            return Vector2.Zero;
+            Render Rend = e.Render;
+            Vector2 newPos = WorldPosToScreenPos(Rend.Transform.Position);
+            return newPos;
 
         }
 

@@ -32,8 +32,8 @@ namespace Bunni.Resources.Modules
         {
             Vector2 mousePos = Camera.GetMouseWorldPosition();
             MouseState mouseState = Mouse.GetState();
-            PositionVector pos = GetComponent<PositionVector>();
             Render rendComp = GetComponent<Render>();
+            Render.TransformC pos = rendComp.Transform;
             if (!(pos.X > mousePos.X
                     || pos.X + rendComp.Texture.Width < mousePos.X
                     || pos.Y > mousePos.Y

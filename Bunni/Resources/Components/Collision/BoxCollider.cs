@@ -49,8 +49,8 @@ namespace Bunni.Resources.Components.Collision
 
         public void ComponentAdded()
         {
-            Render rend = Parent.Parent.GetComponent<Render>();
-            if (rend != null)
+            Render rend = Parent.Parent.Render;
+            if (rend.Texture != null)
             {
                 Width = rend.Texture.Width;
                 Height = rend.Texture.Height;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bunni.Resources.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -13,6 +14,32 @@ namespace Bunni.Resources.Modules
         private List<Component> Components = new List<Component>();
         public bool Active { get; set; } = true;
         public BniTypes.Tag Tag { get; set; }
+        public Render Render;
+
+        public Render.TransformC Transform
+        {
+            get
+            {
+                return Render.Transform;
+            }
+        }
+
+        public Entity()
+        {
+            Render = new Render();
+            AddComponent(Render);
+        }
+
+        Entity(Texture2D tex)
+        {
+            Render = new Render(tex);
+            AddComponent(Render);
+        }
+
+        public void AddTexture(Texture2D tex)
+        {
+            Render.ChangeTexture(tex);
+        }
 
         /// <summary>
         /// Used to add a component to an entity

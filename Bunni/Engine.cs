@@ -5,23 +5,13 @@ using Bunni.Resources.Modules;
 using Bunni.Resources.Components;
 using System;
 using Bunni.Resources.Components.Collision;
+using UntitledDungeonGame.Bunni.Components;
 
 
 //TODO:
-    //check to see if entity already has component
-    //hitboxes
-        //box hitbox (done)
-        //layers (done)
-        //tags (done)
-        //more hitbox types
-    //Animator
-        //animation atlas
-        //animation track ?
-    //physics
-    //camera
-    //particles
-    //render
-        //render layer
+//more hitbox types
+//physics
+//particles
 
 namespace Bunni
 {
@@ -60,24 +50,27 @@ namespace Bunni
             hitBox.Tag = BniTypes.Tag.Player;
             Texture2D tex = Content.Load<Texture2D>("img");
             Texture2D rainbowAnimationTex = Content.Load<Texture2D>("rainbowbox");
+            hitBox.AddTexture(tex);
             player = new player1(rainbowAnimationTex);
-            Animation rainbowAnimation = new Animation(rainbowAnimationTex, 8);
+            //Animation rainbowAnimation = new Animation(rainbowAnimationTex, 8);
+            Animation rainbowAnimation = new Animation();
             player.AddComponent(rainbowAnimation);
-            rainbowAnimation.Loop = true;
+
+            rainbowAnimation.AddAtlas("Rainbow", rainbowAnimationTex, 8);
+            rainbowAnimation.SetDefaultAtlus("Rainbow");
+            rainbowAnimation.AddAnimation("rainboW", 0, 7, 0);
+            rainbowAnimation.GetAnimation("rainboW").Loop = true;
+
             scene1 = new Scene();
-            PositionVector nPsV = new PositionVector();
-            Render nRen = new Render(tex);
-            nPsV.Position = new Vector2(400, 200);
+            player.Transform.Position = new Vector2(400, 200);
             Collider nHitbox = new Collider();
             nHitbox.CreateHitbox<BoxCollider>();
             nHitbox.CollisionLayer = BniTypes.CollisionLayer.Foreground;
-            hitBox.AddComponent(nPsV);
-            hitBox.AddComponent(nRen);
             hitBox.AddComponent(nHitbox);
 
             scene1.AddEntity(hitBox);
             scene1.AddEntity(player);
-            rainbowAnimation.Play();
+            rainbowAnimation.PlayAnimation("rainboW");
             base.Initialize();
 
         }
@@ -117,10 +110,10 @@ namespace Bunni
 
             if (player.GetComponent<Collider>().IntersectsWithTag(hitBox.GetComponent<Collider>(), player.Tag))
             {
-                player.GetComponent<Render>().Color = Color.Red;
+                player.Render.Color = Color.Red;
             }else
             {
-                player.GetComponent<Render>().Color = Color.White;
+                player.Render.Color = Color.White;
             }
 
             Vector2 mouseState = Camera.GetMouseWorldPosition();
@@ -134,7 +127,7 @@ namespace Bunni
             if(mouse.LeftButton == ButtonState.Pressed)
             {
                 Console.WriteLine("Mouse Clicked");
-                player.GetComponent<PositionVector>().Lerp(new Vector2(mouse.Position.X, mouse.Position.Y), 1000);
+                player.Render.Transform.Lerp(new Vector2(mouse.Position.X, mouse.Position.Y), 1000);
             }
 
             scene1.Update(gameTime);

@@ -15,14 +15,14 @@ namespace Bunni
     public class player1 : Entity //this is just a class for testing framework functionality
     {
         public int speed = 1;
+        Input PlayerInput;
         public player1(Texture2D tex)
         {
-            AddComponent(new PositionVector());
-            AddComponent(new Render(tex));
-            Input nInput = new Input();
-            nInput.SetDefaultKeyboardKeys();
+            Render.ChangeTexture(tex);
+            PlayerInput = new Input();
+            PlayerInput.SetDefaultKeyboardKeys();
 
-            nInput.BindKey(Keys.Q, (pressed, held) =>
+            PlayerInput.BindKey(Keys.Q, (pressed, held) =>
             {
                 if(pressed)
                 {
@@ -30,7 +30,7 @@ namespace Bunni
                 }
             });
 
-            nInput.BindKey(Keys.E, (pressed, held) =>
+            PlayerInput.BindKey(Keys.E, (pressed, held) =>
             {
                 if(pressed)
                 {
@@ -38,7 +38,7 @@ namespace Bunni
                 }
             });
 
-            nInput.BindKey(Keys.Up, (pressed, held) =>
+            PlayerInput.BindKey(Keys.Up, (pressed, held) =>
             {
                 if(pressed || held)
                 {
@@ -46,7 +46,7 @@ namespace Bunni
                 }
             });
 
-            nInput.BindKey(Keys.Down, (pressed, held) =>
+            PlayerInput.BindKey(Keys.Down, (pressed, held) =>
             {
                 if (pressed || held)
                 {
@@ -54,7 +54,7 @@ namespace Bunni
                 }
             });
 
-            nInput.BindKey(Keys.Left, (pressed, held) =>
+            PlayerInput.BindKey(Keys.Left, (pressed, held) =>
             {
                 if (pressed || held)
                 {
@@ -62,7 +62,7 @@ namespace Bunni
                 }
             });
 
-            nInput.BindKey(Keys.Right, (pressed, held) =>
+            PlayerInput.BindKey(Keys.Right, (pressed, held) =>
             {
                 if (pressed || held)
                 {
@@ -70,7 +70,7 @@ namespace Bunni
                 }
             });
 
-            nInput.BindKey(Keys.R, (pressed, held) =>
+            PlayerInput.BindKey(Keys.R, (pressed, held) =>
             {
                 if (pressed || held)
                 {
@@ -78,7 +78,7 @@ namespace Bunni
                 }
             });
 
-            nInput.BindKey(Keys.F, (pressed, held) =>
+            PlayerInput.BindKey(Keys.F, (pressed, held) =>
             {
                 if (pressed || held)
                 {
@@ -86,7 +86,7 @@ namespace Bunni
                 }
             });
 
-            AddComponent(nInput);
+            AddComponent(PlayerInput);
             Collider nHitbox = new Collider();
             nHitbox.CreateHitbox<BoxCollider>();
             nHitbox.CollisionLayer = BniTypes.CollisionLayer.Foreground;
@@ -98,9 +98,8 @@ namespace Bunni
         public override void Update(GameTime gameTime, Scene scene)
         {
 
-            Input entIn = GetComponent<Input>();
-            PositionVector entPos = GetComponent<PositionVector>();
-            Vector2 pos = new Vector2(entIn.InputVector.X * speed, entIn.InputVector.Y * speed);
+            Render.TransformC entPos = Render.Transform;
+            Vector2 pos = new Vector2(PlayerInput.InputVector.X * speed, PlayerInput.InputVector.Y * speed);
             
 
             scene.SceneEntities.ForEach((e) =>
