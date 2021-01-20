@@ -44,9 +44,9 @@
     <Compile Include="Engine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Components\Animation.cs" />
-    <Compile Include="Resources\Components\AnimationAtlas.cs" />
-    <Compile Include="Resources\Components\AnimationTrack.cs" />
+    <Compile Include="Resources\Components\Animation\Animation.cs" />
+    <Compile Include="Resources\Components\Animation\AnimationAtlas.cs" />
+    <Compile Include="Resources\Components\Animation\AnimationTrack.cs" />
     <Compile Include="Resources\Modules\Button.cs" />
     <Compile Include="Resources\Components\Collision\BoxCollider.cs" />
     <Compile Include="Resources\Components\Collision\Collider.cs" />

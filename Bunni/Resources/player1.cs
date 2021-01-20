@@ -98,7 +98,7 @@ namespace Bunni
         public override void Update(GameTime gameTime, Scene scene)
         {
 
-            Render.TransformC entPos = Render.Transform;
+            Render.TransformComponent entPos = Render.Transform;
             Vector2 pos = new Vector2(PlayerInput.InputVector.X * speed, PlayerInput.InputVector.Y * speed);
             
 

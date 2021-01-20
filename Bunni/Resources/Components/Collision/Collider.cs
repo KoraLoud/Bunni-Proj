@@ -20,7 +20,7 @@ namespace Bunni.Resources.Components.Collision
         public ICollider Hitbox { get; set; }
         public BniTypes.CollisionLayer CollisionLayer { get; set; }
         private Render RenderComp { get; set; }
-        private Render.TransformC Transform { get; set; }
+        private Render.TransformComponent Transform { get; set; }
         protected Vector2 PositionOffset { get; set; } = Vector2.Zero;
 
         public int X

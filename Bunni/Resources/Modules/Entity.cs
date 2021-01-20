@@ -16,7 +16,7 @@ namespace Bunni.Resources.Modules
         public BniTypes.Tag Tag { get; set; }
         public Render Render;
 
-        public Render.TransformC Transform
+        public Render.TransformComponent Transform
         {
             get
             {

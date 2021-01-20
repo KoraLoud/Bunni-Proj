@@ -168,7 +168,7 @@ namespace Bunni.Resources.Modules
                 }
 
                 float percentage = Math.Min((ElapsedTime - startTime) / ((float)stopTime - startTime), 1);
-                Position = new Vector2(StartPosition.X + (LerpPosition.X - StartPosition.X) * percentage, StartPosition.Y + (LerpPosition.Y - StartPosition.Y) * percentage);
+                Position = Vector2.Lerp(StartPosition, LerpPosition, percentage);
                 if(Finished)
                 {
                     Lerping = false;

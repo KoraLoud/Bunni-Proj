@@ -19,11 +19,11 @@ namespace Bunni.Resources.Components
         public int ZLayer { get; set; } = 1;
         public Vector2 DrawOffset { get; set; } = Vector2.Zero;
 
-        public TransformC Transform { get; set; }
+        public TransformComponent Transform { get; set; }
 
         public Render()
         {
-            Transform = new TransformC();
+            Transform = new TransformComponent();
             Visible = false;
         }
 
@@ -31,7 +31,7 @@ namespace Bunni.Resources.Components
         {
             Texture = texture;
             RenderRectangle = new Rectangle(0, 0, texture.Width, Texture.Height);
-            Transform = new TransformC();
+            Transform = new TransformComponent();
         }
 
         public void ChangeTexture(Texture2D texture)
@@ -64,7 +64,7 @@ namespace Bunni.Resources.Components
 
         }
 
-        public class TransformC
+        public class TransformComponent
         {
             public Vector2 Position { get; set; }
             public Vector2 Velocity { get; set; }
@@ -95,7 +95,7 @@ namespace Bunni.Resources.Components
                 }
             }
 
-            public TransformC()
+            public TransformComponent()
             {
                 Position = Vector2.Zero;
                 Velocity = Vector2.Zero;
@@ -118,6 +118,7 @@ namespace Bunni.Resources.Components
 
                     float percentage = Math.Min((ElapsedTime - startTime) / ((float)stopTime - startTime), 1);
                     Position = new Vector2(StartPosition.X + (LerpPosition.X - StartPosition.X) * percentage, StartPosition.Y + (LerpPosition.Y - StartPosition.Y) * percentage);
+                    //Position = Vector2.Lerp(StartPosition, LerpPosition, percentage);
                     if (Finished)
                     {
                         Lerping = false;
