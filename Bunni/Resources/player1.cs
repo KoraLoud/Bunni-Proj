@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Bunni.Resources.Modules;
 using Bunni.Resources.Components;
-using Bunni.Resources.Components.Collision;
+using Bunni.Resources.Components.Physics;
 
 namespace Bunni
 {
-    public class player1 : Entity //this is just a class for testing framework functionality
+    public class player1 : Actor //this is just a class for testing framework functionality
     {
         public int speed = 1;
         Input PlayerInput;
@@ -87,54 +87,12 @@ namespace Bunni
             });
 
             AddComponent(PlayerInput);
-            Collider nHitbox = new Collider();
-            nHitbox.CreateHitbox<BoxCollider>();
-            nHitbox.CollisionLayer = BniTypes.CollisionLayer.Foreground;
-            AddComponent(nHitbox);
 
             Tag = BniTypes.Tag.Player;
         }
 
         public override void Update(GameTime gameTime, Scene scene)
         {
-
-            Render.TransformComponent entPos = Render.Transform;
-            Vector2 pos = new Vector2(PlayerInput.InputVector.X * speed, PlayerInput.InputVector.Y * speed);
-            
-
-            scene.SceneEntities.ForEach((e) =>
-            {
-                if (e != this)
-                {
-                    if (e.GetComponent<Collider>() != null)
-                    {
-                        GetComponent<Collider>().Offset = new Vector2(pos.X, 0);
-                        if (GetComponent<Collider>().IntersectsOnLayer(e.GetComponent<Collider>()))
-                        {
-                                pos = new Vector2(0, pos.Y);
-                        
-                        }
-                        GetComponent<Collider>().Offset = new Vector2(0, pos.Y);
-                        if (GetComponent<Collider>().IntersectsOnLayer(e.GetComponent<Collider>()))
-                        {
-                            pos = new Vector2(pos.X, 0);
-
-                        }
-                    }
-                        else
-                        {
-                            Console.WriteLine("No collider!");
-                        }
-                }
-
-            });
-            GetComponent<Collider>().Offset = Vector2.Zero;
-            //Console.WriteLine(entPos.Position);
-            //Console.WriteLine(pos.X);
-            entPos.Position = new Vector2(entPos.Position.X + pos.X, entPos.Position.Y + pos.Y);
-            
-            
-
             base.Update(gameTime, scene);
         }
     }

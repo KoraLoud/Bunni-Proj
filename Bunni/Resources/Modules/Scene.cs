@@ -1,4 +1,5 @@
 ﻿using Bunni.Resources.Components;
+using Bunni.Resources.Components.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,6 +13,20 @@ namespace Bunni.Resources.Modules
     public class Scene
     {
         public List<Entity> SceneEntities = new List<Entity>();
+        public List<Solid> Solids = new List<Solid>();
+        public List<Actor> Actors = new List<Actor>();
+
+        public Boolean CollideAt(Rectangle hitbox)
+        {
+            foreach(Solid solid in Solids)
+            {
+                if(solid.Intersects(hitbox))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private Action onLoad;
 

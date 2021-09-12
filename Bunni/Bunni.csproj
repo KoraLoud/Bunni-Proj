@@ -47,14 +47,14 @@
     <Compile Include="Resources\Components\Animation\Animation.cs" />
     <Compile Include="Resources\Components\Animation\AnimationAtlas.cs" />
     <Compile Include="Resources\Components\Animation\AnimationTrack.cs" />
+    <Compile Include="Resources\Components\Physics\Actor.cs" />
+    <Compile Include="Resources\Components\Physics\Solid.cs" />
     <Compile Include="Resources\Modules\Button.cs" />
-    <Compile Include="Resources\Components\Collision\BoxCollider.cs" />
-    <Compile Include="Resources\Components\Collision\Collider.cs" />
-    <Compile Include="Resources\Components\Collision\ICollider.cs" />
     <Compile Include="Resources\Components\Input.cs" />
     <Compile Include="Resources\Components\Render.cs" />
     <Compile Include="Resources\Modules\BniTypes.cs" />
     <Compile Include="Resources\Modules\Camera.cs" />
+    <Compile Include="Resources\Modules\SceneManager.cs" />
     <Compile Include="Resources\player1.cs" />
     <Compile Include="Resources\Modules\Component.cs" />
     <Compile Include="Resources\Modules\Entity.cs" />

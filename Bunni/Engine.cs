@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Bunni.Resources.Modules;
 using Bunni.Resources.Components;
 using System;
-using Bunni.Resources.Components.Collision;
+using Bunni.Resources.Components.Physics;
 using UntitledDungeonGame.Bunni.Components;
 
 
@@ -24,7 +24,7 @@ namespace Bunni
         SpriteBatch spriteBatch;
         public player1 player;
         public Scene scene1;
-        public Entity hitBox = new Entity();
+        public Solid bunni;
 
 
         public Engine()
@@ -47,10 +47,9 @@ namespace Bunni
         {
             IsMouseVisible = true;
             // TODO: Add your initialization logic here
-            hitBox.Tag = BniTypes.Tag.Player;
             Texture2D tex = Content.Load<Texture2D>("img");
             Texture2D rainbowAnimationTex = Content.Load<Texture2D>("rainbowbox");
-            hitBox.AddTexture(tex);
+            bunni = new Solid(tex);
             player = new player1(rainbowAnimationTex);
             //Animation rainbowAnimation = new Animation(rainbowAnimationTex, 8);
             Animation rainbowAnimation = new Animation();
@@ -63,14 +62,13 @@ namespace Bunni
 
             scene1 = new Scene();
             player.Transform.Position = new Vector2(400, 200);
-            Collider nHitbox = new Collider();
-            nHitbox.CreateHitbox<BoxCollider>();
-            nHitbox.CollisionLayer = BniTypes.CollisionLayer.Foreground;
-            hitBox.AddComponent(nHitbox);
 
-            scene1.AddEntity(hitBox);
+            scene1.AddEntity(bunni);
+            scene1.Solids.Add(bunni);
             scene1.AddEntity(player);
             rainbowAnimation.PlayAnimation("rainboW");
+
+            SceneManager.CurrentScene = scene1;
             base.Initialize();
 
         }
@@ -108,27 +106,25 @@ namespace Bunni
 
             scene1.PreUpdate(gameTime);
 
-            if (player.GetComponent<Collider>().IntersectsWithTag(hitBox.GetComponent<Collider>(), player.Tag))
-            {
-                player.Render.Color = Color.Red;
-            }else
-            {
-                player.Render.Color = Color.White;
-            }
-
             Vector2 mouseState = Camera.GetMouseWorldPosition();
 
-            Console.WriteLine("World Position of mouse: "+mouseState);
-            Console.WriteLine("Screen Position of mouse: " + new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
+            //Console.WriteLine("World Position of mouse: "+mouseState);
+            //Console.WriteLine("Screen Position of mouse: " + new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             //Console.WriteLine(mouseState.Y);
-            Console.WriteLine("World Position of camera:" + Camera.Position);
-            Console.WriteLine("");
+            //Console.WriteLine("World Position of camera:" + Camera.Position);
+            //Console.WriteLine("");
             MouseState mouse = Mouse.GetState();
             if(mouse.LeftButton == ButtonState.Pressed)
             {
                 Console.WriteLine("Mouse Clicked");
                 player.Render.Transform.Lerp(new Vector2(mouse.Position.X, mouse.Position.Y), 1000);
             }
+
+            Input pInput = player.GetComponent<Input>();
+            player.MoveX(pInput.InputVector.X*5, null);
+            player.MoveY(pInput.InputVector.Y*5, null);
+            
+
 
             scene1.Update(gameTime);
             scene1.PostUpdate(gameTime);

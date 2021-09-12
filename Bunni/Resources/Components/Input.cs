@@ -16,6 +16,7 @@ namespace Bunni.Resources.Components
     public class Input : Component
     {
         public Vector2 InputVector { get; set; }
+        private Vector2 RawInput { get; set; }
 
         private List<KeyListener> Listeners = new List<KeyListener>();
 
@@ -46,56 +47,89 @@ namespace Bunni.Resources.Components
             BindKey(UpK, (pressed, held) =>
             {
                 Vector2 input = InputVector;
+                Vector2 raw = RawInput;
                 if (pressed || held)
                 {
                     input.Y = -1;
+                    raw.Y = -1;
                 }
-                else if (input.Y == -1)
+                else if(RawInput.Y != 1)
                 {
                     input.Y = 0;
+                    raw.Y = 0;
                 }
+                if (input.X != 0 && input.Y != 0)
+                {
+                    input.Normalize();
+                }
+                Console.WriteLine(input);
+                RawInput = raw;
                 InputVector = input;
             });
 
             BindKey(RightK, (pressed, held) =>
             {
                 Vector2 input = InputVector;
+                Vector2 raw = RawInput;
                 if (pressed || held)
                 {
                     input.X = 1;
+                    raw.X = 1;
                 }
-                else if (input.X == 1)
+                else if(RawInput.X != -1)
                 {
                     input.X = 0;
+                    raw.X = 0;
                 }
+                if (input.X != 0 && input.Y != 0)
+                {
+                    input.Normalize();
+                }
+                RawInput = raw;
                 InputVector = input;
             });
 
             BindKey(DownK, (pressed, held) =>
             {
                 Vector2 input = InputVector;
+                Vector2 raw = RawInput;
                 if (pressed || held)
                 {
                     input.Y = 1;
+                    raw.Y = 1;
                 }
-                else if (input.Y == 1)
+                else if(RawInput.Y != -1)
                 {
                     input.Y = 0;
+                    raw.Y = 0;
+                }
+                if (input.X != 0 && input.Y != 0)
+                {
+                    input.Normalize();
                 }
                 InputVector = input;
+                RawInput = raw;
             });
 
             BindKey(LeftK, (pressed, held) =>
             {
                 Vector2 input = InputVector;
+                Vector2 raw = RawInput;
                 if (pressed || held)
                 {
                     input.X = -1;
-                }else if(input.X==-1)
+                    raw.X = -1;
+                }else if(RawInput.X != 1)
                 {
                     input.X = 0;
+                    raw.X = 0;
+                }
+                if(input.X != 0 && input.Y != 0)
+                {
+                    input.Normalize();
                 }
                 InputVector = input;
+                RawInput = raw;
             });
         }
 

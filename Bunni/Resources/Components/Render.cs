@@ -21,6 +21,38 @@ namespace Bunni.Resources.Components
 
         public TransformComponent Transform { get; set; }
 
+        public float Top
+        {
+            get
+            {
+                return Transform.Position.Y;
+            }
+        }
+
+        public float Right
+        {
+            get
+            {
+                return Transform.Position.X + Texture.Width;
+                }
+        }
+
+        public float Bottom
+        {
+            get
+            {
+                return Transform.Position.Y + Texture.Height;
+            }
+        }
+
+        public float Left
+        {
+            get
+            {
+                return Transform.Position.X;
+            }
+        }
+
         public Render()
         {
             Transform = new TransformComponent();
@@ -79,7 +111,7 @@ namespace Bunni.Resources.Components
                 }
                 set
                 {
-                    Position = new Vector2(value, Position.Y);
+                    Position = new Vector2(value, (int)Position.Y);
                 }
             }
 
@@ -91,9 +123,10 @@ namespace Bunni.Resources.Components
                 }
                 set
                 {
-                    Position = new Vector2(Position.X, value);
+                    Position = new Vector2((int)Position.X, value);
                 }
             }
+            
 
             public TransformComponent()
             {

@@ -1,4 +1,4 @@
-﻿using Bunni.Resources.Components.Collision;
+﻿using Bunni.Resources.Components.Physics;
 using Bunni.Resources.Modules;
 using Microsoft.Xna.Framework;
 using System;
@@ -76,11 +76,6 @@ namespace Bunni.Resources.Components
                 }
                 Render EntityRenderComp = AnimationComponent.Parent.Render;
                 EntityRenderComp.RenderRectangle = Atlas.Rectangles[CurrentFrame];
-                Collider EntityCollider = AnimationComponent.Parent.GetComponent<Collider>();
-                if (EntityCollider != null)
-                {
-                    EntityCollider.Hitbox.Width = Atlas.Texture.Width / Atlas.Frames;
-                }
             }
         }
 

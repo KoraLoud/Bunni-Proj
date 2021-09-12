@@ -30,7 +30,7 @@ namespace Bunni.Resources.Modules
             AddComponent(Render);
         }
 
-        Entity(Texture2D tex)
+        public Entity(Texture2D tex)
         {
             Render = new Render(tex);
             AddComponent(Render);
