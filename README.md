@@ -1,3 +1,3 @@
 # Bunni
 
-see documentation at https://koramikino.github.io/BunniDocs/
+Basic game framework using monogame
